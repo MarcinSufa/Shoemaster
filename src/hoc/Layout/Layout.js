@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Navbar from '../../Components/Navigation/Navbar/Navbar';
+import ProductList from '../../Components/ProductList/ProductList';
+import './Layout.css';
+
 
 class Layout extends Component {
 
@@ -8,7 +11,11 @@ class Layout extends Component {
         return (
             <React.Fragment>
                 <Navbar />
-            </React.Fragment>
+                <div className='Layout'>
+                    <ProductList/>
+                    {this.props.children}
+                </div>
+          </React.Fragment>
         )
     }
 }
