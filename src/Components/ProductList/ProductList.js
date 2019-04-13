@@ -15,10 +15,14 @@ class ProductList extends Component {
             price: 150, 
             image: 'https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/pl689uvafiyu8oh1mmtl/free-x-metcon-cross-training-weightlifting-shoe-VKoLdD.jpg',
             size: {
+                38: 0,
+                39: 0,
                 40: 12,
                 41: 20,
                 42: 18, 
-                43: 5
+                43: 5,
+                44: 1,
+                45: 0,
             },
             type: 'Sports Shoes',
             color: 'Black',
