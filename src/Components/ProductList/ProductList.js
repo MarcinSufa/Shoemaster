@@ -3,58 +3,16 @@ import Product from '../Product/Product';
 import'./ProductList.css';
 import Modal from '../UI/Modal/Modal';
 import FullProductInfo from '../FullProductInfo/FullProductInfo';
+import axios from '../../axios-products';
+import Spinner from '../UI/Spinner/Spinner';
 
 class ProductList extends Component {
 
     state = {
-        Products: [
-        {
-            id: 1,
-            brand: 'Nike',
-            model: 'Free x Metcon M',
-            price: 150, 
-            image: 'https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/pl689uvafiyu8oh1mmtl/free-x-metcon-cross-training-weightlifting-shoe-VKoLdD.jpg',
-            size: {
-                38: 0,
-                39: 0,
-                40: 12,
-                41: 20,
-                42: 18, 
-                43: 5,
-                44: 1,
-                45: 0,
-            },
-            type: 'Sports Shoes',
-            color: 'Black',
-            madeOf: {
-                upper: 'Leather',
-                lining: 'Textile',
-                outerSole: 'Rubber'
-            },
-        },
-        {
-        id: 2,
-        brand: 'Nike',
-        model: 'Air Force 1 07',
-        price: 199, 
-        image: 'https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/gsuin11ptg5qgktmzoat/buty-air-force-1-07-v2TERGb4.jpg',
-        size: {
-            40: 30,
-            41: 15,
-            42: 4, 
-            43: 1,
-        },
-        type: 'Sports Shoes',
-        color: 'White',
-        madeOf: {
-            upper: 'Leather',
-            lining: 'Textile',
-            outerSole: 'Leather'
-         }
-        }
-    ],
+    Products: [],
     selectedProductId: null,
-    selectedProductData: null
+    selectedProductData: null,
+    loading: false
     }
    
     productSelectedHandler = (id, shoes) => { 
@@ -68,23 +26,41 @@ class ProductList extends Component {
         this.setState({selectedProductId: null});
     }
     
+ 
+    componentDidMount () {
+        this.setState({loading: true});
+        axios.get( '/Products.json' )
+        .then( response => {
+            this.setState( { Products: response.data, loading: false } );
+        } )
+        .catch( error => {
+            this.setState( { error: true, loading: false } );
+        } );
+    }
+
+
     render () {
         console.log(Object.keys(this.state.Products));
       
-
-       let productList= ( this.state.Products.map((shoes, index) => {
-            return <Product 
-            key={shoes.id}
-            brand={shoes.brand}
-            model={shoes.model} 
-            price={shoes.price}
-            image={shoes.image}
-            size={shoes.size}
-            type={shoes.type}
-            madeOf={shoes.madeOf}
-            clicked={() => this.productSelectedHandler(shoes.id, shoes)}
-             />
-        }));  
+      let productList = null;
+        if(this.state.loading) {
+           return  <Spinner/>
+        } else {
+            productList = (this.state.Products.map((shoes, index) => {
+                return <Product 
+                key={shoes.id}
+                brand={shoes.brand}
+                model={shoes.model} 
+                price={shoes.price}
+                image={shoes.image}
+                size={shoes.size}
+                type={shoes.type}
+                madeOf={shoes.madeOf}
+                clicked={() => this.productSelectedHandler(shoes.id, shoes)}
+                 />
+            })); 
+        }
+       
 
         let fullProductInf = null;
         if (this.state.selectedProductId != null) {
@@ -95,6 +71,7 @@ class ProductList extends Component {
                 brand={this.state.selectedProductData.brand}
                 model={this.state.selectedProductData.model} 
                 price={this.state.selectedProductData.price}
+                description={this.state.selectedProductData.description}
                 image={this.state.selectedProductData.image}
                 size={this.state.selectedProductData.size}
                 type={this.state.selectedProductData.type}

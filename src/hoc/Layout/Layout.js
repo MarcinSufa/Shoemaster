@@ -15,7 +15,7 @@ class Layout extends Component {
                     <ProductList/>
                     {this.props.children}
                 </div>
-          </React.Fragment>
+            </React.Fragment>
         )
     }
 }

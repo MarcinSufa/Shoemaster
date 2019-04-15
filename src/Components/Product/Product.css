@@ -1,5 +1,5 @@
 .ProductImage {
-    width:300px;
+    width:100%;
     height: 300px;
 }
 
@@ -16,6 +16,7 @@
   .ProductCard:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
     0 10px 10px rgba(0,0,0,0.22);  
+    cursor: pointer;
   }
 
   .PriceTag {
@@ -29,7 +30,6 @@
     font-weight: 400;
   }
 
- 
 
   .ImagePlaceholder {
     position: relative;
@@ -66,3 +66,10 @@
   .ShoeMaterials {
     display: none;
   }
+
+  @media (max-width: 657px) {
+    .ProductCard {
+    display: block;
+    margin: 10px auto;     
+    }
+}

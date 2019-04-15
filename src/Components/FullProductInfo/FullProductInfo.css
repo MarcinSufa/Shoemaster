@@ -90,3 +90,18 @@
    background-color: #6a1b9a;
    color: white;
 }
+
+@media (max-width: 657px) {
+  .FullProductCard{
+    display: block;
+    margin: 0 auto;
+  }
+  .FullPriceTag, .FullProductImage , .FullProductLeft, .FullProductRigth {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  .FullProductRigth {
+    padding: 0 10px 20px;
+  }
+}

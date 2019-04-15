@@ -1,0 +1,79 @@
+{ 
+    "Products":  [
+        {
+                "id": 1,
+                "brand": "Nike",
+                "model": "Free x Metcon M",
+                "price": 150, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/pl689uvafiyu8oh1mmtl/free-x-metcon-cross-training-weightlifting-shoe-VKoLdD.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 0,
+                    "40": 12,
+                    "41": 20,
+                    "42": 18, 
+                    "43": 5,
+                    "44": 1,
+                    "45": 0
+                },
+                "type": "Sports Shoes",
+                "color": "Black",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+         {
+            "id": 2,
+            "brand": "Nike",
+            "model": "Air Force 1 07",
+            "price": 199, 
+            "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+            "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/gsuin11ptg5qgktmzoat/buty-air-force-1-07-v2TERGb4.jpg",
+            "size": {
+                "38": 0,
+                "39": 0,
+                "40": 30,
+                "41": 15,
+                "42": 4, 
+                "43": 1,
+                "44": 1,
+                "45": 0
+            },
+            "type": "Sports Shoes",
+            "color": "White",
+            "madeOf": {
+                "upper": "Leather",
+                "lining": "Textile",
+                "outerSole": "Leather"
+                }
+            },
+            {
+                "id": 3,
+                "brand": "Nike",
+                "model": "Air Max 95 LE",
+                "price": 189, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://runcolors.pl/product_picture/full_size/air_max_95_le_gs_310830-015_nike_310830-015_2.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 0,
+                    "40": 0,
+                    "41": 15,
+                    "42": 0, 
+                    "43": 1,
+                    "44": 0,
+                    "45": 0
+                },
+                "type": "Sports Shoes",
+                "color": "White",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Leather"
+                }
+            }
+    ]
+ }

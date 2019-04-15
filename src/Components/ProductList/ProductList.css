@@ -1,8 +1,18 @@
 .ShoeDisplayer {
     display: flex;
-    /* justify-content: flex-start; */
-    width: 1366px;
+    justify-content:center;
+    width: auto;
     height: auto;
     flex-wrap: wrap;
+   
 }
 
+
+ /* @media (max-width: 696px) {
+    .ShoeDisplayer {
+        width:100%;
+    display: block;
+        margin: auto;
+        text-align: center;
+    }
+}  */

@@ -5,9 +5,6 @@ import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
 
-  
-
- 
     render () {
         return (
             <React.Fragment>

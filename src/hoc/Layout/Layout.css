@@ -1,4 +1,14 @@
 .Layout {
-    width: 1366px;  
-     margin: 0 auto; 
+    width: auto;  
+     margin: 0 12em; 
+     text-align: center;
 }
+
+@media (max-width: 1425px) {
+    .Layout {
+        margin: 0  2em;
+    }
+   
+}
+
+
