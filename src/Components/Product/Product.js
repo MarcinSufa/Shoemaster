@@ -10,9 +10,9 @@ const Product = (props) => {
     const productSize = Object.entries(props.size)
     .map((sizKey, index) => {
         if(sizKey[1] !== 0) {
-        return (<div className="ShoeAvailableSize" key={index}>{sizKey[0]}</div>);
-     }else {
-        return null;
+            return (<div className="ShoeAvailableSize" key={index}>{sizKey[0]}</div>);
+        }else {
+            return null;
     }})
     
 
@@ -20,10 +20,10 @@ const Product = (props) => {
     return (
     <div className='ProductCard' onClick={props.clicked}  >
         <div className='ImagePlaceholder'><h3 className='PriceTag'>{props.price} $</h3><img className='ProductImage' src={props.image} alt='nike shoes'></img></div>
-        <span><h2>{props.brand}</h2></span> <span></span>
-        <h3>{props.model}</h3>
+            <span><h2>{props.brand}</h2></span> <span></span>
+            <h3>{props.model}</h3>
         <div>
-        {productSize}
+            {productSize}
         </div>
         <button className='btnShoeMadeOf'>Made off:</button>
         <div className='ShoeMaterials' >

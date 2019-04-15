@@ -5,6 +5,7 @@ import Modal from '../UI/Modal/Modal';
 import FullProductInfo from '../FullProductInfo/FullProductInfo';
 import axios from '../../axios-products';
 import Spinner from '../UI/Spinner/Spinner';
+import Cart from '../Cart/Cart';
 
 class ProductList extends Component {
 
@@ -14,10 +15,10 @@ class ProductList extends Component {
     selectedProductData: null,
     loading: false
     }
-   
+    
     productSelectedHandler = (id, shoes) => { 
         this.setState({selectedProductId: id});
-         this.setState({selectedProductData: shoes});
+        this.setState({selectedProductData: shoes});
         console.log(this.state.selectedProductData);
         console.log(this.state.selectedProductId);
     }
@@ -26,7 +27,7 @@ class ProductList extends Component {
         this.setState({selectedProductId: null});
     }
     
- 
+
     componentDidMount () {
         this.setState({loading: true});
         axios.get( '/Products.json' )
@@ -41,10 +42,10 @@ class ProductList extends Component {
 
     render () {
         console.log(Object.keys(this.state.Products));
-      
-      let productList = null;
+    
+    let productList = null;
         if(this.state.loading) {
-           return  <Spinner/>
+            return  <Spinner/>
         } else {
             productList = (this.state.Products.map((shoes, index) => {
                 return <Product 
@@ -57,15 +58,15 @@ class ProductList extends Component {
                 type={shoes.type}
                 madeOf={shoes.madeOf}
                 clicked={() => this.productSelectedHandler(shoes.id, shoes)}
-                 />
+                />
             })); 
         }
-       
+
 
         let fullProductInf = null;
         if (this.state.selectedProductId != null) {
-             fullProductInf = (
-                 <Modal modalClosed={this.productSelectCancelHandler}>
+            fullProductInf = (
+                <Modal modalClosed={this.productSelectCancelHandler}>
                 <FullProductInfo 
                 id={this.state.selectedProductId}
                 brand={this.state.selectedProductData.brand}
@@ -80,14 +81,14 @@ class ProductList extends Component {
                 </Modal>
             );
         }
-       
+        
         return (
             <React.Fragment>
-               {fullProductInf} 
-            <div className='ShoeDisplayer'> 
-            {productList}
+                {fullProductInf} 
+                <div className='ShoeDisplayer'> 
+                {productList}
                 </div> 
-                    
+                <Cart/>
             </React.Fragment>
         )
     }

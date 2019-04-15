@@ -9,23 +9,24 @@ class FullProductInfo extends Component {
         quantity: null,
         id: null,
         size: null, 
+        price: null
     }
 
 
-    addToCartHandler = (selectedShoeId) => {
+    addToCartHandler = (selectedShoeId, selectedShoePrice) => {
         if (this.state.size) {
             let newState = { ...this.state};
             newState.quantity = 1; 
             newState.id = selectedShoeId;
-            this.setState({quantity: newState.quantity, id: newState.id});
+            newState.price = selectedShoePrice;
+            this.setState({quantity: newState.quantity, id: newState.id, price: newState.price});
         } else{
             alert('Please select your size!');
         }
         console.log(this.state.id);
-         alert('your order is' + this.state.id + " and " + this.state.size);
+        alert('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price);
         console.log(selectedShoeId);
     }
- 
     selectSizeHandler = (sizKey) => {
         this.setState({size: sizKey[0]});
         console.log(this.state.size);
@@ -36,15 +37,16 @@ class FullProductInfo extends Component {
         .map((sizKey, i) => {
             if(sizKey[1] === 0) {
             return (<button className="ShoeNotAvailableSize" disabled key={i} >{sizKey[0]}</button>);
-         }else {
+            }else {
              let checkIfClicked = this.state.size === sizKey[0]? 'ShoeAvailableSizeBtnActive': 'ShoeAvailableSizeBtn' //  Dynamically change Css class if button clicked
             return (<button className={checkIfClicked} onClick={() => {this.selectSizeHandler(sizKey)}} key={i} >{sizKey[0]}</button>);
         }}) 
 
         let selectedShoeId = this.props.id;
+        let selectedShoePrice = this.props.price;
 
         let addToCartBtn = (
-            <button className="AddToCartBtn" onClick={() => this.addToCartHandler(selectedShoeId)}>Add to Cart</button>
+            <button className="AddToCartBtn" onClick={() => this.addToCartHandler(selectedShoeId, selectedShoePrice)}>Add to Cart</button>
         )
                 
 
