@@ -3,7 +3,7 @@ import './Checkout.css';
 
 class Checkout extends Component {
     render () {
-
+        console.log(this.props);
         return (
             <div>
                 <h1>Checktout</h1>

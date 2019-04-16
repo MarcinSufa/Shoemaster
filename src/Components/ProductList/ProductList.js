@@ -5,7 +5,7 @@ import Modal from '../UI/Modal/Modal';
 import FullProductInfo from '../FullProductInfo/FullProductInfo';
 import axios from '../../axios-products';
 import Spinner from '../UI/Spinner/Spinner';
-import Cart from '../Cart/Cart';
+
 
 class ProductList extends Component {
 
@@ -88,7 +88,6 @@ class ProductList extends Component {
                 <div className='ShoeDisplayer'> 
                 {productList}
                 </div> 
-                <Cart/>
             </React.Fragment>
         )
     }

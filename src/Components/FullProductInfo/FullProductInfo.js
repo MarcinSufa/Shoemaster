@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import  './FullProductInfo.css';
-
-
+import axios from '../../axios-products';
 
 class FullProductInfo extends Component {
 
@@ -9,24 +8,40 @@ class FullProductInfo extends Component {
         quantity: null,
         id: null,
         size: null, 
-        price: null
+        price: null,
+        image: null,
+        addedToCart: false
     }
 
 
-    addToCartHandler = (selectedShoeId, selectedShoePrice) => {
+    addToCartHandler = (selectedShoeId, selectedShoePrice, selectedShoeImg) => {
         if (this.state.size) {
             let newState = { ...this.state};
             newState.quantity = 1; 
             newState.id = selectedShoeId;
             newState.price = selectedShoePrice;
-            this.setState({quantity: newState.quantity, id: newState.id, price: newState.price});
-        } else{
+            newState.image = selectedShoeImg;
+            this.setState({quantity: newState.quantity, id: newState.id, price: newState.price, addedToCart: true, image: newState.image}, () => {
+                // console.log('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price)
+                const cartProduct = {
+                    id: this.state.id, 
+                    size: this.state.size,
+                    quantity: this.state.quantity,
+                    price: this.state.price,
+                    image: this.state.image
+                }
+                axios.post( '/Cart.json', cartProduct )
+                .then( response => console.log (response)) 
+                .catch( error => console.log(error));
+            });
+        } else {
             alert('Please select your size!');
         }
         console.log(this.state.id);
-        alert('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price);
+        // alert('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price);
         console.log(selectedShoeId);
     }
+
     selectSizeHandler = (sizKey) => {
         this.setState({size: sizKey[0]});
         console.log(this.state.size);
@@ -44,14 +59,14 @@ class FullProductInfo extends Component {
 
         let selectedShoeId = this.props.id;
         let selectedShoePrice = this.props.price;
+        let selectedShoeImg = this.props.image;
 
         let addToCartBtn = (
-            <button className="AddToCartBtn" onClick={() => this.addToCartHandler(selectedShoeId, selectedShoePrice)}>Add to Cart</button>
+            <button className="AddToCartBtn" onClick={() => this.addToCartHandler(selectedShoeId, selectedShoePrice, selectedShoeImg)}>Add to Cart</button>
         )
-                
 
     return (
-        <React.Fragment>
+        <React.Fragment> 
     <div className='FullProductCard' >
         <div className='FullProductLeft'>
         <img className='FullProductImage' src={this.props.image} alt='nike shoes'></img>
