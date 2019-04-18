@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  './FullProductInfo.css';
 import axios from '../../axios-products';
+import { withRouter } from 'react-router-dom';
 
 class FullProductInfo extends Component {
 
@@ -31,7 +32,7 @@ class FullProductInfo extends Component {
                     image: this.state.image
                 }
                 axios.post( '/Cart.json', cartProduct )
-                .then( response => console.log (response)) 
+                .then( response => this.props.history.replace('/Cart')) 
                 .catch( error => console.log(error));
             });
         } else {
@@ -94,5 +95,5 @@ class FullProductInfo extends Component {
     }   
 }
 
-export default FullProductInfo;
+export default withRouter (FullProductInfo);
 
