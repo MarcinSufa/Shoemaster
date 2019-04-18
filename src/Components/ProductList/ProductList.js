@@ -13,7 +13,8 @@ class ProductList extends Component {
     Products: [],
     selectedProductId: null,
     selectedProductData: null,
-    loading: false
+    loading: false,
+    visible: 8,
     }
     
     productSelectedHandler = (id, shoes) => { 
@@ -27,6 +28,11 @@ class ProductList extends Component {
         this.setState({selectedProductId: null});
     }
     
+    loadMore = () => {
+        this.setState((prev) => {
+            return {visible: prev.visible + 12};
+        });
+    }
 
     componentDidMount () {
         this.setState({loading: true});
@@ -44,10 +50,11 @@ class ProductList extends Component {
         console.log(Object.keys(this.state.Products));
     
     let productList = null;
+    let loadMoreBtn = null;
         if(this.state.loading) {
             return  <Spinner/>
         } else {
-            productList = (this.state.Products.map((shoes, index) => {
+            productList = (this.state.Products.slice(0, this.state.visible).map((shoes, index) => {
                 return <Product 
                 key={shoes.id}
                 brand={shoes.brand}
@@ -60,6 +67,7 @@ class ProductList extends Component {
                 clicked={() => this.productSelectedHandler(shoes.id, shoes)}
                 />
             })); 
+            loadMoreBtn = <button onClick={this.loadMore} type="button" className="load-more">Load more</button>
         }
 
 
@@ -88,6 +96,7 @@ class ProductList extends Component {
                 <div className='ShoeDisplayer'> 
                 {productList}
                 </div> 
+                {loadMoreBtn}
             </React.Fragment>
         )
     }

@@ -87,8 +87,8 @@
     margin: 5px;
     border-radius: 25px;
     cursor: pointer;
-   background-color: #6a1b9a;
-   color: white;
+    background-color: #6a1b9a;
+    color: white;
 }
 
 @media (max-width: 657px) {

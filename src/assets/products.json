@@ -74,6 +74,231 @@
                     "lining": "Textile",
                     "outerSole": "Leather"
                 }
+            },
+            {
+                "id": 4,
+                "brand": "Nike",
+                "model": "React Element 55",
+                "price": 170, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/pystsgsdlvbgebpz3lyv/buty-meskie-react-element-55-M7q7kp.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 0,
+                    "41": 15,
+                    "42": 0, 
+                    "43": 1,
+                    "44": 5,
+                    "45": 10
+                },
+                "type": "Lifestyle",
+                "color": "Grey",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 5,
+                "brand": "Nike",
+                "model": "Air Force 1 High '07 3",
+                "price": 149, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/xwcmhmn5guca3vxl9haa/buty-meskie-air-force-1-high-07-3-jSxMRB.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 8,
+                    "41": 0,
+                    "42": 10, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Lifestyle",
+                "color": "White",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 6,
+                "brand": "Nike",
+                "model": "Viale",
+                "price": 169, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/lyt3fz24hhr5k0erv5km/buty-meskie-viale-jqSLbl.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 8,
+                    "41": 0,
+                    "42": 0, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Lifestyle",
+                "color": "Black",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 7,
+                "brand": "Nike",
+                "model": "Air Jordan 1",
+                "price": 190, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/rzpli83loodbuwelpcpv/air-jordan-1-black-hyper-pink-release-date.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 8,
+                    "41": 0,
+                    "42": 0, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Lifestyle",
+                "color": "Black",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 8,
+                "brand": "Nike",
+                "model": "Air Max 97 On Air Cash Ru",
+                "price": 240, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/gdrnlhrusghnd1gdd4zh/buty-air-max-97-on-air-cash-ru-Crr5WX.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 8,
+                    "41": 0,
+                    "42": 0, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Lifestyle",
+                "color": "Blue",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 9,
+                "brand": "Nike",
+                "model": "Jordan 6 Rings",
+                "price": 210, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/xevwwyg7ilyccpfdktq4/buty-meskie-jordan-6-rings-P2qkgn.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 8,
+                    "41": 0,
+                    "42": 0, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Lifestyle",
+                "color": "White",
+                "madeOf": {
+                    "upper": "Leather",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 10,
+                "brand": "Nike",
+                "model": "SB Zoom Stefan Janoski Canvas Premium",
+                "price": 230, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/u8ysdzf6zcr8juq9xizh/meskie-buty-do-skateboardingu-sb-zoom-stefan-janoski-canvas-STShqV.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 0,
+                    "41": 5,
+                    "42": 2, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Lifestyle",
+                "color": "Brown",
+                "madeOf": {
+                    "upper": "Textile",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 11,
+                "brand": "Nike",
+                "model": "Air Zoom Pegasus 35",
+                "price": 130, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/etqmjg6oskjgfyfnnduu/meskie-buty-do-biegania-air-zoom-pegasus-35-kX9NZL.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 5,
+                    "41": 5,
+                    "42": 2, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Running",
+                "color": "Brown",
+                "madeOf": {
+                    "upper": "Textile",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
+            },
+            {
+                "id": 12,
+                "brand": "Nike",
+                "model": "Air Zoom Terra Kiger 4",
+                "price": 147, 
+                "description": "Lorem ipsum dolor sit amet, vocent petentium adipiscing ne nam, ad quo tritani indoctum, eu cibo melius adipisci sit. Postulant dignissim eloquentiam ad vel, vim at meis legimus tincidunt. Ex audire antiopam periculis est, sit ne etiam persius. Vim dicta noster omnesque ut, eu amet cetero lucilius duo. Sit in amet ocurreret complectitur.",
+                "image": "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/ug9zcipbmpta8rm1sk6e/meskie-buty-do-biegania-air-zoom-terra-kiger-4-KxH8L9.jpg",
+                "size": {
+                    "38": 0,
+                    "39": 4,
+                    "40": 5,
+                    "41": 5,
+                    "42": 2, 
+                    "43": 12,
+                    "44": 5,
+                    "45": 0
+                },
+                "type": "Running",
+                "color": "Grey",
+                "madeOf": {
+                    "upper": "Textile",
+                    "lining": "Textile",
+                    "outerSole": "Rubber"
+                }
             }
     ]
- }
+}
