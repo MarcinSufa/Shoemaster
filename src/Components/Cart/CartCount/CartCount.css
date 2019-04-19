@@ -1,0 +1,15 @@
+.CartCountNum {
+    top: 20px;
+    right: 1%;
+    position: absolute;
+    display: inline-flex;
+    border: 1px solid #6a1b9a;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 25px;
+    color: #6a1b9a;
+    color: white;
+    background-color: #6a1b9a;
+    z-index: -1;
+
+}

@@ -3,6 +3,7 @@ import './Cart.css';
 import axios from '../../axios-products';
 import Spinner from "../UI/Spinner/Spinner";
 import emptyCartImg from '../../assets/images/empty.png';
+import CartCount from "./CartCount/CartCount";
 
 
 class Cart extends Component {
@@ -11,7 +12,8 @@ state= {
     Cart: [],
     loading: false,
     error: false,
-    fullPrice: null
+    fullPrice: null,
+    ProductCount: null
 }
 
 handleDelete = (event) => {
@@ -20,9 +22,13 @@ handleDelete = (event) => {
     axios.delete(`/Cart/${PostId}.json`)
         .then(res => {
             this.componentDidMount();
-        // window.location.reload();
         });
     }
+
+cartCountHandler = () => {
+    let cartProductsNum = (Object.keys(this.state.Cart).length);
+    this.setState({ProductCount: cartProductsNum});
+}   
 
 goToCheckout = (event) => {
     event.preventDefault();
@@ -36,6 +42,7 @@ componentDidMount () {
         this.setState( { Cart: response.data, loading: false } );
     })
     .then( this.fullPriceHandler)
+    .then( this.cartCountHandler)
     .catch( error => {
         this.setState( { error: error, loading: false } );
     } );
@@ -48,34 +55,36 @@ fullPriceHandler = () => {
     for (let i = 0; i < allCartPrices.length; i++) {
         fullPrice += allCartPrices[i].price;
     }
-    console.log(fullPrice);
     this.setState({fullPrice: fullPrice});
 }
 
     render() {
-let printCartProducts = null;
-let  fullCartPrice =null;
-let checkoutBtn = null;
+        let cartCountNum = null;
+        let printCartProducts = null;
+        let  fullCartPrice =null;
+        let checkoutBtn = null;
+
         if(this.state.loading) {
             return <Spinner/>
         }  else if (this.state.Cart !== null) {
-            fullCartPrice = <h3>Full Price: {this.state.fullPrice} $</h3>
-            
+            fullCartPrice = <h3>Total Price: {this.state.fullPrice} $</h3>
+            cartCountNum = <CartCount count = {this.state.ProductCount} />
             printCartProducts = (Object.entries(this.state.Cart).map((shoes) => {
                 return (
                 <React.Fragment>
-                <div key={shoes[0]}><img className='SmallProductImage' src={shoes[1].image} alt='nike shoes'></img>
-                    <div><h4>Quantity</h4><p>{shoes[1].quantity}</p></div>
-                    <div><h3>Product ID :</h3><p>{shoes[1].id}</p></div>
-                    <div><h3>Size{shoes[1].size}</h3> </div>
-                    <div><h3>Price{shoes[1].price} $</h3></div>
-                    <button  value={shoes[0]} onClick={ this.handleDelete} >Delete</button>
-                    <hr/>
-                </div>
+                <div className='ProductInCart'> 
+                <div className='cartProductDelete ' key={shoes[0]}><img className='SmallProductImage' src={shoes[1].image} alt='nike shoes'></img></div>
+                    <div className='CartProductInfo'><h4>Brand</h4><p>{shoes[1].brand}</p></div>
+                    <div className='CartProductInfo'><h4>Model</h4><p>{shoes[1].model}</p></div>
+                    <div className='CartProductInfo'><h4>Quantity</h4><p>{shoes[1].quantity}</p></div>
+                    <div className='CartProductInfo'><h4>Size</h4><p>{shoes[1].size}</p> </div>
+                    <div className='CartProductInfo'><h4>Price</h4><p>{shoes[1].price}$</p> </div>
+                    <div className='cartProductDelete'><button className='cartProductDeleteBtn'  value={shoes[0]} onClick={ this.handleDelete} >Delete</button></div>
+                </div>                 
                 </React.Fragment>
                 );
             }));
-            checkoutBtn = <button onClick={ this.goToCheckout}> Checkout </button>
+            checkoutBtn = <button className='goToCheckout' onClick={ this.goToCheckout}> Checkout </button>
         } else  {
             printCartProducts= (
                 <div>
@@ -85,15 +94,16 @@ let checkoutBtn = null;
             )
         } 
         return (
-            <div>
+            <div className='CartBox'>
             <h1>Your Cart</h1>
-            <div>
-                    {printCartProducts}
-                <hr></hr>
-                {fullCartPrice}
-                
+            <div className='CartWrapper'>
+                <div >
+                {printCartProducts}
+                </div>                
             </div>
+                {fullCartPrice}
                 {checkoutBtn}
+                {cartCountNum}
         </div>
         );
     }  

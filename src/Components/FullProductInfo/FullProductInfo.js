@@ -29,7 +29,9 @@ class FullProductInfo extends Component {
                     size: this.state.size,
                     quantity: this.state.quantity,
                     price: this.state.price,
-                    image: this.state.image
+                    image: this.state.image,
+                    brand: this.props.brand,
+                    model: this.props.model
                 }
                 axios.post( '/Cart.json', cartProduct )
                 .then( response => this.props.history.replace('/Cart')) 

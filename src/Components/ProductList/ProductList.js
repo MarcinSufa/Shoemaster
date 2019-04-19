@@ -20,8 +20,6 @@ class ProductList extends Component {
     productSelectedHandler = (id, shoes) => { 
         this.setState({selectedProductId: id});
         this.setState({selectedProductData: shoes});
-        console.log(this.state.selectedProductData);
-        console.log(this.state.selectedProductId);
     }
 
     productSelectCancelHandler = () => {
@@ -47,10 +45,9 @@ class ProductList extends Component {
 
 
     render () {
-        console.log(Object.keys(this.state.Products));
-    
-    let productList = null;
-    let loadMoreBtn = null;
+        let productList = null;
+        let loadMoreBtn = null;
+
         if(this.state.loading) {
             return  <Spinner/>
         } else {
@@ -69,7 +66,6 @@ class ProductList extends Component {
             })); 
             loadMoreBtn = <button onClick={this.loadMore} type="button" className="load-more">Load more</button>
         }
-
 
         let fullProductInf = null;
         if (this.state.selectedProductId != null) {
@@ -101,6 +97,5 @@ class ProductList extends Component {
         )
     }
 }
-
 
 export default ProductList;
