@@ -25,3 +25,8 @@ Input {
     outline: none;
     background-color: #ccc;
 }
+
+.Select {
+    width: 100%;
+    height: 25px;
+}

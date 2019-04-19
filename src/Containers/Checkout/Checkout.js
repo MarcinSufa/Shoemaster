@@ -94,6 +94,36 @@ class Checkout extends Component {
         checkoutPrice: null
     }
     
+    orderHandler = (event) => {
+        event.preventDefault();
+        this.setState ({loading: true});
+        const customerData = {};
+        for (let formElementIdentifier in this.state.CustomerData) {
+            customerData[formElementIdentifier] = this.state.CustomerData[formElementIdentifier]
+        }
+        let OrderDate = new Date ();
+        const order = {
+            OrderDetails: this.state.Order,
+            CustomerData:  customerData,
+            OrderDate:  OrderDate 
+        } 
+
+    axios.post ('/orders.json', order)
+        .then ( response => {
+            this.setState({loading: false});
+        })
+        .catch (error => {
+            this.setState({loading: false});
+        })        
+    axios.delete(`/Cart.json`)
+        .then(res => {
+            this.setState({loading: false});
+            this.props.history.replace('/');  
+        })
+        .catch (error => {
+            this.setState({loading: false});
+        })    
+    }
 
     componentDidMount () {
         this.setState({loading: true});
@@ -113,28 +143,51 @@ class Checkout extends Component {
     for (let i = 0; i < allCartPrices.length; i++) {
         fullPrice += allCartPrices[i].price;
     }
-    console.log(fullPrice);
     this.setState({checkoutPrice: fullPrice});
     }
 
+    // User input will update state and present input in form
+    inputChangeHandler= (event, inputIdentifier) => {
+        const updatedCustomerData = {
+            ...this.state.CustomerData
+        };
+        const updatedFormElement = {
+            ...updatedCustomerData[inputIdentifier]
+        }; 
+        updatedFormElement.value = event.target.value;
+        updatedCustomerData[inputIdentifier] = updatedFormElement;
+        this.setState({CustomerData: updatedCustomerData})
+    }
 
     render ()  {
         // let orderPrice = <h3>{Object.values(this.state.checkoutPrice)}</h3>
         let orderPrice = null;
         let form = null;
+        let formElementArray = [];
+        for (let key in this.state.CustomerData){
+            formElementArray.push({
+                id: key,
+                config: this.state.CustomerData[key]
+            });
+        }
         if(this.state.loading) {
             return <Spinner/> 
         }
         else if(this.state.checkoutPrice) {
             orderPrice = <h3>{this.state.checkoutPrice} $</h3>
             form = (
-                <form>
+                <form onSubmit={this.orderHandler}>
                     <h3>Contact Data</h3>
-                    <Input inputtype='input' type ='text' name='name' placeholder='Your Name'/>
-                    <Input inputtype='input' type ='email' name='email' placeholder='Your Mail'/>
-                    <Input inputtype='input' type ='text' name='street' placeholder='Street'/>
-                    <Input inputtype='input' type ='text' name='postal' placeholder='Postal Code'/>
-                    <button>ORDER</button>
+                    {formElementArray.map(formElement => (
+                        <Input 
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        changed={(event) => this.inputChangeHandler(event, formElement.id)}
+                        />
+                    ))}
+                    <button className='CheckoutBtn'>ORDER</button>
                 </form>
             )
         }

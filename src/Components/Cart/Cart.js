@@ -18,11 +18,16 @@ state= {
 
 handleDelete = (event) => {
     event.preventDefault();
-    let PostId = event.currentTarget.value;
-    axios.delete(`/Cart/${PostId}.json`)
+    this.setState ({loading: true});
+    let cartProductId = event.currentTarget.value;
+    axios.delete(`/Cart/${cartProductId}.json`)
         .then(res => {
+            this.setState({loading: false});
             this.componentDidMount();
-        });
+        })
+        .catch (error => {
+            this.setState({loading: false});
+        })
     }
 
 cartCountHandler = () => {
