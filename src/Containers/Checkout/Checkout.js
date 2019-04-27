@@ -133,7 +133,7 @@ class Checkout extends Component {
         .then( response => {
             this.setState( { Order: response.data, loading: false });
         })
-        .then( this.fullPriceCheckout)
+        .then( (response) => (this.state.Order==null)? this.props.history.replace('/'): this.fullPriceCheckout()) 
         .catch( error => {
             this.setState( { error: error, loading: false } );
         })
