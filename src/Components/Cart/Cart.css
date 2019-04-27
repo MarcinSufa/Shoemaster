@@ -56,17 +56,3 @@
     display: flex;
 }
 
-.cartProductDeleteBtn, .goToCheckout {
-        border: 1px solid #4a148c;
-        background-color: #4a148c;
-        border-radius: 25px;
-        color: white;
-        padding: 10px 15px;
-        margin: 10px;
-        cursor: pointer;
-}
-.cartProductDeleteBtn:hover, .goToCheckout:hover {
-    background-color: #8e24aa ;
-    border: 1px solid #8e24aa;
-}
-

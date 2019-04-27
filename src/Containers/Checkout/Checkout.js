@@ -3,6 +3,7 @@ import './Checkout.css';
 import axios from '../../axios-products';
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import Input from '../../Components/UI/Input/Input';
+import Button from '../../Components/UI/Button/Button';
 
 class Checkout extends Component {
 
@@ -212,7 +213,7 @@ class Checkout extends Component {
                         touched={formElement.config.touched}
                         />
                     ))}
-                    <button className='CheckoutBtn' disabled={!this.state.formIsValid}>ORDER</button>
+                    <Button disabled={!this.state.formIsValid}>ORDER</Button>
                 </form>
             )
         }

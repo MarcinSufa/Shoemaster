@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  './FullProductInfo.css';
 import axios from '../../axios-products';
 import { withRouter } from 'react-router-dom';
+import Button from '../UI/Button/Button';
 
 class FullProductInfo extends Component {
 
@@ -65,7 +66,7 @@ class FullProductInfo extends Component {
         let selectedShoeImg = this.props.image;
 
         let addToCartBtn = (
-            <button className="AddToCartBtn" onClick={() => this.addToCartHandler(selectedShoeId, selectedShoePrice, selectedShoeImg)}>Add to Cart</button>
+            <Button  clicked={() => this.addToCartHandler(selectedShoeId, selectedShoePrice, selectedShoeImg)}>Add to Cart</Button>
         )
 
     return (

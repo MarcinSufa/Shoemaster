@@ -9,9 +9,6 @@
     justify-content: center;
 }
 
-
-
-
 .FullPriceTag {
     padding: 10px;
     margin: 0;
@@ -60,18 +57,7 @@
     background-color: white;
   }
 
-  .AddToCartBtn {
-    display: inline-flex;
-    border: 1px solid #6a1b9a;
-    padding: 5px 10px;
-    margin: 5px;
-    border-radius: 25px;
-    color: white;
-    background-color: #6a1b9a;
-    cursor: pointer;
-  }
-
-  .ShoeAvailableSizeBtn {
+   .ShoeAvailableSizeBtn {
       display: inline-flex;
       border: 1px solid #6a1b9a;
       padding: 5px 10px;

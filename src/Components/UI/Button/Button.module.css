@@ -1,0 +1,59 @@
+.Button  {
+    border: 1px solid #4a148c;
+    background-color: #4a148c;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+.Button:hover  {
+background-color: #8e24aa ;
+border: 1px solid #8e24aa;
+}
+
+.Button:disabled {
+background-color: #eeeeee;
+border: 1px solid  #eeeeee;
+color: black;
+pointer-events: none;
+}
+
+.Button:disabled :hover {
+background-color:  #eeeeee ;
+border: 1px solid  #eeeeee;
+pointer-events: none;
+}
+
+
+.ShoeNotAvailableSize {
+    text-decoration: line-through;
+    display: inline-flex;
+    /* border: 1px solid #6a1b9a; */
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 25px;
+    /* color: #6a1b9a; */
+    background-color: white;
+}
+
+.ShoeAvailableSizeBtn {
+    display: inline-flex;
+    border: 1px solid #6a1b9a;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 25px;
+    color: #6a1b9a;
+    cursor: pointer;
+}
+
+.ShoeAvailableSizeBtnActive {
+    display: inline-flex;
+    border: 1px solid #6a1b9a;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #6a1b9a;
+    color: white;
+}

@@ -5,6 +5,7 @@ import Modal from '../UI/Modal/Modal';
 import FullProductInfo from '../FullProductInfo/FullProductInfo';
 import axios from '../../axios-products';
 import Spinner from '../UI/Spinner/Spinner';
+import Button from '../UI/Button/Button';
 
 
 class ProductList extends Component {
@@ -64,7 +65,7 @@ class ProductList extends Component {
                 clicked={() => this.productSelectedHandler(shoes.id, shoes)}
                 />
             })); 
-            loadMoreBtn = <button onClick={this.loadMore} type="button" className="load-more">Load more</button>
+            loadMoreBtn = <Button clicked={this.loadMore} >Load more</Button>
         }
 
         let fullProductInf = null;
