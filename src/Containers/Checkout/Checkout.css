@@ -11,3 +11,14 @@
 background-color: #8e24aa ;
 border: 1px solid #8e24aa;
 }
+
+.CheckoutBtn:disabled {
+background-color: #eeeeee;
+border: 1px solid  #eeeeee;
+color: black;
+}
+
+.CheckoutBtn:disabled :hover {
+background-color:  #eeeeee ;
+border: 1px solid  #eeeeee;
+}

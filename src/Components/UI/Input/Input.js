@@ -1,37 +1,47 @@
 import React from 'react';
-import './Input.css';
+import styles from './Input.module.css';
 
 const input = (props) => {
 
     let inputElement = null;
+    const inputStyles = [styles.InputElement];
 
+    if (props.invalid && props.shouldValidate && props.touched) {
+        inputStyles.push(styles.Invalid);
+    }
+
+    let validationError = null;
+    if (props.invalid && props.touched) {
+    validationError = <p className={styles.ValidationError}>
+    {props.elementConfig.placeholder} {props.value} is not valid, try again!</p>;
+    }
     switch (props.elementType) {
         case ('input'):
-            inputElement = <input className='inputElement'
+            inputElement = <input className={inputStyles.join(' ')}
             onChange={props.changed} 
             {...props.elementConfig}
             value={props.value}  />;
             break;
         case ('textarea'):
-            inputElement = <textarea  className='inputElement' 
+            inputElement = <textarea  className={inputStyles} 
             onChange={props.changed}
             {...props.elementConfig}
             value={props.value} />;
             break;
         case ('dropdown'):
-            inputElement = <input className='inputElement'
+            inputElement = <input className={inputStyles}
             onChange={props.changed} 
             {...props.elementConfig}
             value={props.value} />;
             break;
         case ('email'):
-            inputElement = <input className='inputElement' 
+            inputElement = <input className={inputStyles} 
             onChange={props.changed}
             {...props.elementConfig}
             value={props.value} />;
             break;
         case ('select'):
-            inputElement = (<select className='inputElement Select'
+            inputElement = (<select className={inputStyles}
             onChange={props.changed} 
             {...props.elementConfig}
             value={props.value}>
@@ -44,7 +54,7 @@ const input = (props) => {
             </select>); 
             break; 
         default:
-            inputElement = <input className='inputElement' 
+            inputElement = <input className={inputStyles} 
             onChange={props.changed}
             {...props.elementConfig}
             value={props.value}/>;
@@ -56,6 +66,7 @@ const input = (props) => {
         <div className='Input'>
             <label className='Label'>{props.label}</label>
             {inputElement}
+            {validationError}
         </div>
     );
 }

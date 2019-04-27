@@ -45,7 +45,7 @@ class Checkout extends Component {
                 validation: {
                     required: true,
                     minLength: 5,
-                    maxLength: 5
+                    maxLength: 6
                 },
                 valid: false,
                 touched: false
@@ -91,7 +91,8 @@ class Checkout extends Component {
         },
         loading: false,
         error: false,
-        checkoutPrice: null
+        checkoutPrice: null,
+        formIsValid: false
     }
     
     orderHandler = (event) => {
@@ -146,7 +147,21 @@ class Checkout extends Component {
     this.setState({checkoutPrice: fullPrice});
     }
 
-    // User input will update state and present input in form
+    checkValidity (value, rules) {
+        let isValid = true;
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+        if(rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+        if(rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid;
+        }
+        return isValid;
+    }
+
+    // User input will update state and present input to form
     inputChangeHandler= (event, inputIdentifier) => {
         const updatedCustomerData = {
             ...this.state.CustomerData
@@ -155,8 +170,15 @@ class Checkout extends Component {
             ...updatedCustomerData[inputIdentifier]
         }; 
         updatedFormElement.value = event.target.value;
+        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
+        updatedFormElement.touched= true;
         updatedCustomerData[inputIdentifier] = updatedFormElement;
-        this.setState({CustomerData: updatedCustomerData})
+
+        let formIsValid = true; 
+        for ( let inputIdentifier in updatedCustomerData) {
+            formIsValid = updatedCustomerData[inputIdentifier].valid && formIsValid
+        }
+        this.setState({CustomerData: updatedCustomerData, formIsValid:formIsValid})
     }
 
     render ()  {
@@ -185,9 +207,12 @@ class Checkout extends Component {
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
                         changed={(event) => this.inputChangeHandler(event, formElement.id)}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
                         />
                     ))}
-                    <button className='CheckoutBtn'>ORDER</button>
+                    <button className='CheckoutBtn' disabled={!this.state.formIsValid}>ORDER</button>
                 </form>
             )
         }
