@@ -3,6 +3,7 @@ import  './FullProductInfo.css';
 import axios from '../../axios-products';
 import { withRouter } from 'react-router-dom';
 import Button from '../UI/Button/Button';
+import Modal from '../UI/Modal/Modal';
 
 class FullProductInfo extends Component {
 
@@ -12,13 +13,14 @@ class FullProductInfo extends Component {
         size: null, 
         price: null,
         image: null,
-        addedToCart: false
+        addedToCart: false,
+        sizeNotSelected: false
     }
 
 
     addToCartHandler = (selectedShoeId, selectedShoePrice, selectedShoeImg) => {
+        let newState = { ...this.state};
         if (this.state.size) {
-            let newState = { ...this.state};
             newState.quantity = 1; 
             newState.id = selectedShoeId;
             newState.price = selectedShoePrice;
@@ -32,18 +34,24 @@ class FullProductInfo extends Component {
                     price: this.state.price,
                     image: this.state.image,
                     brand: this.props.brand,
-                    model: this.props.model
+                    model: this.props.model,
+                    type: this.props.type,
+                    madeOf: this.props.madeOf
                 }
                 axios.post( '/Cart.json', cartProduct )
                 .then( response => this.props.history.replace('/Cart')) 
                 .catch( error => console.log(error));
             });
         } else {
-            alert('Please select your size!');
+            this.setState({sizeNotSelected: true})
         }
         console.log(this.state.id);
         // alert('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price);
         console.log(selectedShoeId);
+    }
+
+    alertHandler = () => {
+        this.setState({sizeNotSelected: false});
     }
 
     selectSizeHandler = (sizKey) => {
@@ -52,6 +60,15 @@ class FullProductInfo extends Component {
     }
     
     render () {
+        let alertSizeSelect = null;
+        let alertStyle={color:'red'};
+        if (this.state.sizeNotSelected) {
+            alertSizeSelect = (
+            <Modal modalClosed={this.alertHandler}>
+                <p style={alertStyle}>Please Select your size!</p>
+            </Modal>
+            ); 
+        }
         const productSize = Object.entries(this.props.size)
         .map((sizKey, i) => {
             if(sizKey[1] === 0) {
@@ -76,6 +93,7 @@ class FullProductInfo extends Component {
         <img className='FullProductImage' src={this.props.image} alt='nike shoes'></img>
         </div>
         <div className="FullProductRigth">
+        {alertSizeSelect}
             <h1>{this.props.brand}</h1>
             <span><h2>{this.props.model}</h2></span>   
             <h4>Product id: {this.props.id} </h4>
@@ -87,7 +105,7 @@ class FullProductInfo extends Component {
             </div>
             <button >Made off:</button>
             <h3>Chose your size</h3>
-            {productSize }
+            <div>{productSize }</div>
         <hr></hr>
             {addToCartBtn}
 

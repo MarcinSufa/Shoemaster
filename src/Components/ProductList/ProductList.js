@@ -40,7 +40,7 @@ class ProductList extends Component {
     render () {
         let loadMoreBtn = null;
         let fullProductInf = null;
-        let productList = this.props.error? <p>Unfortunetly, we can't load shoes from database!</p> : <Spinner/>;
+        let productList = this.props.error? <p>Unfortunately, we can't load shoes from the database!</p> : <Spinner/>;
 
         if (this.props.prod) {
             productList = (this.props.prod.slice(0, this.state.visible).map((shoes, index) => {
