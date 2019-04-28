@@ -3,18 +3,17 @@ import Product from '../Product/Product';
 import'./ProductList.css';
 import Modal from '../UI/Modal/Modal';
 import FullProductInfo from '../FullProductInfo/FullProductInfo';
-import axios from '../../axios-products';
 import Spinner from '../UI/Spinner/Spinner';
 import Button from '../UI/Button/Button';
+import { connect } from 'react-redux';
+import * as productListActions from '../../store/actions/index';
 
 
 class ProductList extends Component {
 
     state = {
-    Products: [],
     selectedProductId: null,
     selectedProductData: null,
-    loading: false,
     visible: 8,
     }
     
@@ -34,25 +33,17 @@ class ProductList extends Component {
     }
 
     componentDidMount () {
-        this.setState({loading: true});
-        axios.get( '/Products.json' )
-        .then( response => {
-            this.setState( { Products: response.data, loading: false } );
-        } )
-        .catch( error => {
-            this.setState( { error: true, loading: false } );
-        } );
+        this.props.onInitProducts();
     }
 
 
     render () {
-        let productList = null;
         let loadMoreBtn = null;
+        let fullProductInf = null;
+        let productList = this.props.error? <p>Unfortunetly, we can't load shoes from database!</p> : <Spinner/>;
 
-        if(this.state.loading) {
-            return  <Spinner/>
-        } else {
-            productList = (this.state.Products.slice(0, this.state.visible).map((shoes, index) => {
+        if (this.props.prod) {
+            productList = (this.props.prod.slice(0, this.state.visible).map((shoes, index) => {
                 return <Product 
                 key={shoes.id}
                 brand={shoes.brand}
@@ -66,9 +57,8 @@ class ProductList extends Component {
                 />
             })); 
             loadMoreBtn = <Button clicked={this.loadMore} >Load more</Button>
-        }
-
-        let fullProductInf = null;
+        } 
+        
         if (this.state.selectedProductId != null) {
             fullProductInf = (
                 <Modal modalClosed={this.productSelectCancelHandler}>
@@ -99,4 +89,17 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+const mapStateToProps = state => {
+    return {
+        prod: state.Products,
+        error: state.error
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitProducts: () => dispatch(productListActions.initProducts())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (ProductList);
