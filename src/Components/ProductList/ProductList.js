@@ -91,8 +91,8 @@ class ProductList extends Component {
 
 const mapStateToProps = state => {
     return {
-        prod: state.Products,
-        error: state.error
+        prod: state.productList.Products,
+        error: state.productList.error
     };
 }
 

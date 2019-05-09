@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import  './FullProductInfo.css';
-import axios from '../../axios-products';
 import { withRouter } from 'react-router-dom';
 import Button from '../UI/Button/Button';
 import Modal from '../UI/Modal/Modal';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 class FullProductInfo extends Component {
 
@@ -38,9 +39,11 @@ class FullProductInfo extends Component {
                     type: this.props.type,
                     madeOf: this.props.madeOf
                 }
-                axios.post( '/Cart.json', cartProduct )
-                .then( response => this.props.history.replace('/Cart')) 
-                .catch( error => console.log(error));
+                this.props.onAddToCart(cartProduct);
+                console.log(localStorage);   
+                // axios.post( '/Cart.json', cartProduct )
+                // .then( response => this.props.history.replace('/Cart')) 
+                // .catch( error => console.log(error));
             });
         } else {
             this.setState({sizeNotSelected: true})
@@ -116,5 +119,11 @@ class FullProductInfo extends Component {
     }   
 }
 
-export default withRouter (FullProductInfo);
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddToCart: (cartProduct) => dispatch(actions.addToCartLocalStorage(cartProduct))
+    };
+};
+
+export default withRouter(connect(null, mapDispatchToProps) (FullProductInfo));
 

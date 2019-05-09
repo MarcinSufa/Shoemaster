@@ -3,16 +3,13 @@ import './Cart.css';
 import axios from '../../axios-products';
 import Spinner from "../UI/Spinner/Spinner";
 import emptyCartImg from '../../assets/images/empty.png';
-import CartCount from "./CartCount/CartCount";
+// import CartCount from "./CartCount/CartCount";
 import Button from '../UI/Button/Button';
-
-
+import { connect } from 'react-redux';
+import * as cartListActions from '../../store/actions/index';
 class Cart extends Component {
 
 state= {
-    Cart: [],
-    loading: false,
-    error: false,
     fullPrice: null,
     ProductCount: null
 }
@@ -43,16 +40,18 @@ goToCheckout = (event) => {
 }
 
 componentDidMount () {
-    this.setState({loading: true});
-    axios.get( '/Cart.json' )
-    .then( response => {
-        this.setState( { Cart: response.data, loading: false } );
-    })
-    .then( this.fullPriceHandler)
-    .then( this.cartCountHandler)
-    .catch( error => {
-        this.setState( { error: error, loading: false } );
-    } );
+    this.props.onInitCart();
+    console.log(this.props.Cart);
+    // this.setState({loading: true});
+    // axios.get( '/Cart.json' )
+    // .then( response => {
+    //     this.setState( { Cart: response.data, loading: false } );
+    // })
+    // .then( this.fullPriceHandler)
+    // .then( this.cartCountHandler)
+    // .catch( error => {
+    //     this.setState( { error: error, loading: false } );
+    // } );
 } 
 
 // Calculating full price of Cart
@@ -71,12 +70,13 @@ fullPriceHandler = () => {
         let  fullCartPrice =null;
         let checkoutBtn = null;
 
-        if(this.state.loading) {
+        if(this.props.loading) {
             return <Spinner/>
-        }  else if (this.state.Cart !== null) {
-            fullCartPrice = <h3>Total Price: {this.state.fullPrice} $</h3>
-            cartCountNum = <CartCount count = {this.state.ProductCount} />
-            printCartProducts = (Object.entries(this.state.Cart).map((shoes) => {
+        }  else if (this.props.Cart != null ) {
+            // fullCartPrice = <h3>Total Price: {this.state.fullPrice} $</h3>
+            // cartCountNum = <CartCount count = {this.state.ProductCount} />
+            console.log(this.props.Cart);
+            printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
                 return (
                 <React.Fragment>
                 <div className='ProductInCart'> 
@@ -116,4 +116,18 @@ fullPriceHandler = () => {
     }  
 }
 
-export default Cart;
+const mapStateToProps = state => {
+    return {
+        Cart: state.cart.cart,
+        loading: state.cart.loading
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitCart: () => dispatch(cartListActions.fetchLocalStoreCart())
+    };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (Cart);
