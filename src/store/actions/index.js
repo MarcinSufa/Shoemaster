@@ -8,5 +8,6 @@ export {
 export {
     fetchLocalStoreCart,
     addToCartSuccess,
-    addToCartFail
+    addToCartFail,
+    deleteFromCart
 } from './cart';

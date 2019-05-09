@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Cart.css';
-import axios from '../../axios-products';
 import Spinner from "../UI/Spinner/Spinner";
 import emptyCartImg from '../../assets/images/empty.png';
 // import CartCount from "./CartCount/CartCount";
@@ -16,16 +15,8 @@ state= {
 
 handleDelete = (event) => {
     event.preventDefault();
-    this.setState ({loading: true});
-    let cartProductId = event.currentTarget.value;
-    axios.delete(`/Cart/${cartProductId}.json`)
-        .then(res => {
-            this.setState({loading: false});
-            this.componentDidMount();
-        })
-        .catch (error => {
-            this.setState({loading: false});
-        })
+    this.props.onDeleteFromCart(event);
+    this.componentDidMount();
     }
 
 cartCountHandler = () => {
@@ -42,27 +33,7 @@ goToCheckout = (event) => {
 componentDidMount () {
     this.props.onInitCart();
     console.log(this.props.Cart);
-    // this.setState({loading: true});
-    // axios.get( '/Cart.json' )
-    // .then( response => {
-    //     this.setState( { Cart: response.data, loading: false } );
-    // })
-    // .then( this.fullPriceHandler)
-    // .then( this.cartCountHandler)
-    // .catch( error => {
-    //     this.setState( { error: error, loading: false } );
-    // } );
 } 
-
-// Calculating full price of Cart
-fullPriceHandler = () => {
-    let allCartPrices = Object.values(this.state.Cart);
-    let fullPrice= 0;
-    for (let i = 0; i < allCartPrices.length; i++) {
-        fullPrice += allCartPrices[i].price;
-    }
-    this.setState({fullPrice: fullPrice});
-}
 
     render() {
         let cartCountNum = null;
@@ -73,7 +44,7 @@ fullPriceHandler = () => {
         if(this.props.loading) {
             return <Spinner/>
         }  else if (this.props.Cart != null ) {
-            // fullCartPrice = <h3>Total Price: {this.state.fullPrice} $</h3>
+            fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
             // cartCountNum = <CartCount count = {this.state.ProductCount} />
             console.log(this.props.Cart);
             printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
@@ -119,13 +90,15 @@ fullPriceHandler = () => {
 const mapStateToProps = state => {
     return {
         Cart: state.cart.cart,
-        loading: state.cart.loading
+        loading: state.cart.loading,
+        fullPrice: state.cart.fullCartPrice
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitCart: () => dispatch(cartListActions.fetchLocalStoreCart())
+        onInitCart: () => dispatch(cartListActions.fetchLocalStoreCart()),
+        onDeleteFromCart: (event) => dispatch(cartListActions.deleteFromCart(event))
     };
 }
 

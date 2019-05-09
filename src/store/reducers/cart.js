@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: action.localCart,
+                fullCartPrice: action.fullCartPrice,
                 loading: false,
             };
         case actionTypes.FETCH_CART_FROM_LOCAL_FAIL:    
@@ -20,6 +21,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
             };
+        case actionTypes.DELETE_FROM_CART:    
+            return {
+                ...state,
+                loading: false,
+            };    
         default:    
             return state;
     }
