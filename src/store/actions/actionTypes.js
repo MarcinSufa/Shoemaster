@@ -3,6 +3,8 @@ export const FETCH_PRODUCTS_FAIL = 'FETCH_PRODUCTS_FAIL';
 
 export const DELETE_FROM_CART = 'DELETE_FROM_CART';
 
+export const CART_COUNTER = 'CART_COUNTER';
+
 // export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
 // export const ADD_TO_CART_FAIL = 'ADD_TO_CART_FAIL';
 

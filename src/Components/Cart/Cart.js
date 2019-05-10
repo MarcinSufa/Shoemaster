@@ -43,15 +43,14 @@ componentDidMount () {
 
         if(this.props.loading) {
             return <Spinner/>
-        }  else if (this.props.Cart != null ) {
+        }  else if (this.props.Cart !== null ) {
             fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
             // cartCountNum = <CartCount count = {this.state.ProductCount} />
             console.log(this.props.Cart);
             printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
                 return (
-                <React.Fragment>
-                <div className='ProductInCart'> 
-                <div className='cartProductDelete ' key={shoes[0]}><img className='SmallProductImage' src={shoes[1].image} alt='nike shoes'></img></div>
+                <div className='ProductInCart' key={shoes[0]}> 
+                <div className='cartProductDelete ' ><img className='SmallProductImage' src={shoes[1].image} alt='nike shoes'></img></div>
                     <div className='CartProductInfo'><h4>Brand</h4><p>{shoes[1].brand}</p></div>
                     <div className='CartProductInfo'><h4>Model</h4><p>{shoes[1].model}</p></div>
                     <div className='CartProductInfo'><h4>Quantity</h4><p>{shoes[1].quantity}</p></div>
@@ -59,7 +58,6 @@ componentDidMount () {
                     <div className='CartProductInfo'><h4>Price</h4><p>{shoes[1].price}$</p> </div>
                     <div className='cartProductDelete'><Button  value={shoes[0]} clicked={this.handleDelete}>Delete</Button></div>
                 </div>                 
-                </React.Fragment>
                 );
             }));
             checkoutBtn = <Button clicked={ this.goToCheckout}> Checkout </Button>

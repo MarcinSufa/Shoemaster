@@ -24,8 +24,15 @@ const reducer = (state = initialState, action) => {
         case actionTypes.DELETE_FROM_CART:    
             return {
                 ...state,
+                cartItemsCounter: action.cartDecreaseCounter,
                 loading: false,
             };    
+        case actionTypes.CART_COUNTER:    
+            return {
+                ...state,
+                cartItemsCounter: action.cartItemsCounter,
+                loading: false,
+            };     
         default:    
             return state;
     }

@@ -4,11 +4,13 @@ import axios from '../../axios-products';
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import Input from '../../Components/UI/Input/Input';
 import Button from '../../Components/UI/Button/Button';
+import { connect } from 'react-redux';
+import * as checkoutListActions from '../../store/actions/index';
 
 class Checkout extends Component {
 
     state= {
-        Order: [],
+        Order: null,
         CustomerData:{
             name: {
                 elementType:'input',
@@ -105,42 +107,56 @@ class Checkout extends Component {
         }
         let OrderDate = new Date ();
         const order = {
-            OrderDetails: this.state.Order,
+            OrderDetails: this.props.Cart,
             CustomerData:  customerData,
-            OrderDate:  OrderDate 
+            OrderDate:  OrderDate ,
+            Price: this.props.fullPrice
         } 
 
     axios.post ('/orders.json', order)
         .then ( response => {
             this.setState({loading: false});
+            this.props.cartDeleteHandler();
+            //to do - oreder success component
+            this.props.history.replace('/'); 
         })
         .catch (error => {
             this.setState({loading: false});
-        })        
-    axios.delete(`/Cart.json`)
-        .then(res => {
-            this.setState({loading: false});
-            this.props.history.replace('/');  
-        })
-        .catch (error => {
-            this.setState({loading: false});
-        })    
+        })  
+
+    // axios.delete(`/Cart.json`)
+    //     .then(res => {
+    //         this.setState({loading: false});
+    //         this.props.history.replace('/');  
+    //     })
+    //     .catch (error => {
+    //         this.setState({loading: false});
+    //     })    
     }
 
-    componentDidMount () {
-        this.setState({loading: true});
-        axios.get( '/Cart.json' )
-        .then( response => {
-            this.setState( { Order: response.data, loading: false });
-        })
-        .then( (response) => (this.state.Order==null)? this.props.history.replace('/'): this.fullPriceCheckout()) 
-        .catch( error => {
-            this.setState( { error: error, loading: false } );
-        })
+    componentDidMount (props) {
+        // this.setState({loading: true});
+        this.props.onInitCheckout();        
+        // this.setState( { Order: this.props.Cart, loading: false } );
+        console.log(this.props.Cart)
+        console.log(this.state.Order)
+        // if (this.state.Order==null) {
+        //     this.props.history.replace('/');
+        // }
+
+
+        // axios.get( '/Cart.json' )
+        // .then( response => {
+        //     this.setState( { Order: response.data, loading: false });
+        // })
+        // .then( (response) => (this.state.Order==null)? this.props.history.replace('/'): this.fullPriceCheckout()) 
+        // .catch( error => {
+        //     this.setState( { error: error, loading: false } );
+        // })
     } 
     
     fullPriceCheckout = () => {
-    let allCartPrices = Object.values(this.state.Order);
+    let allCartPrices = Object.values(this.props.Cart);
     let fullPrice= 0;
     for (let i = 0; i < allCartPrices.length; i++) {
         fullPrice += allCartPrices[i].price;
@@ -184,7 +200,7 @@ class Checkout extends Component {
 
     render ()  {
         // let orderPrice = <h3>{Object.values(this.state.checkoutPrice)}</h3>
-        let orderPrice = null;
+        let orderPrice = this.props.fullPrice;
         let form = null;
         let formElementArray = [];
         for (let key in this.state.CustomerData){
@@ -193,11 +209,11 @@ class Checkout extends Component {
                 config: this.state.CustomerData[key]
             });
         }
-        if(this.state.loading) {
+        if(this.props.loading) {
             return <Spinner/> 
         }
-        else if(this.state.checkoutPrice) {
-            orderPrice = <h3>{this.state.checkoutPrice} $</h3>
+        else if(this.props.fullPrice) {
+            orderPrice = <h3>{this.props.fullPrice} $</h3>
             form = (
                 <form onSubmit={this.orderHandler}>
                     <h3>Contact Data</h3>
@@ -230,4 +246,19 @@ class Checkout extends Component {
     }
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+    return {
+        Cart: state.cart.cart,
+        loading: state.cart.loading,
+        fullPrice: state.cart.fullCartPrice
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitCheckout: () => dispatch(checkoutListActions.fetchLocalStoreCart()),
+        cartDeleteHandler: () => dispatch(checkoutListActions.clearLocalStore()),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Checkout);

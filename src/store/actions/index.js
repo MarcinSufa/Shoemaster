@@ -3,7 +3,7 @@ export {
     fetchProductsFail
 } from './productList';
 export {
-    addToCartLocalStorage,
+    addToCartLocalStorage
 } from './addToCart';
 export {
     fetchLocalStoreCart,
@@ -11,3 +11,6 @@ export {
     addToCartFail,
     deleteFromCart
 } from './cart';
+export {
+    clearLocalStore
+}from './checkout';
