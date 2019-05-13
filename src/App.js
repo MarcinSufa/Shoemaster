@@ -5,7 +5,7 @@ import {Route, Switch } from 'react-router-dom';
 import Cart from './Components/Cart/Cart';
 import Checkout from './Containers/Checkout/Checkout';
 import ProductList from './Components/ProductList/ProductList';
-
+import Auth from './Containers/Auth/Auth';
 
 class App extends Component {
   render() {
@@ -15,6 +15,7 @@ class App extends Component {
         <Switch>
         <Route path="/Cart" component={Cart}/>
         <Route path="/Checkout" component={Checkout}/>
+        <Route path="/Login" component={Auth}/>
         <Route path="/" exact component={ProductList}/>
         </Switch>
         </Layout>

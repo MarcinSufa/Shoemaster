@@ -23,7 +23,7 @@ class  Navbar extends Component {
                 </ul>
                 <ul className='RightNavLink'>
                 <li>About </li>
-                <li>Log-in </li>
+                <li><NavLink to="/Login" className="">Log-in</NavLink> </li>
                 <li><NavLink to="/Cart" className="">Cart</NavLink>{cartCountNum}</li>
                 </ul>
             </nav>

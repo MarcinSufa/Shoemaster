@@ -97,11 +97,13 @@ class Checkout extends Component {
         checkoutPrice: null,
         formIsValid: false
     }
-    
+
+
     orderHandler = (event) => {
         event.preventDefault();
         this.setState ({loading: true});
         const customerData = {};
+        let userToken = this.props.token;
         for (let formElementIdentifier in this.state.CustomerData) {
             customerData[formElementIdentifier] = this.state.CustomerData[formElementIdentifier]
         }
@@ -113,11 +115,11 @@ class Checkout extends Component {
             Price: this.props.fullPrice
         } 
 
-    axios.post ('/orders.json', order)
+    axios.post ('/orders.json?auth=' + userToken, order)
         .then ( response => {
             this.setState({loading: false});
             this.props.cartDeleteHandler();
-            //to do - oreder success component
+            //to do - render success component
             this.props.history.replace('/'); 
         })
         .catch (error => {
@@ -250,7 +252,8 @@ const mapStateToProps = state => {
     return {
         Cart: state.cart.cart,
         loading: state.cart.loading,
-        fullPrice: state.cart.fullCartPrice
+        fullPrice: state.cart.fullCartPrice,
+        token: state.auth.token
     };
 }
 

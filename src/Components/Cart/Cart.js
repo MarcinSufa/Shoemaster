@@ -43,7 +43,7 @@ componentDidMount () {
 
         if(this.props.loading) {
             return <Spinner/>
-        }  else if (this.props.Cart !== null ) {
+        }  else if (this.props.fullPrice !== 0 && this.props.Cart ) {
             fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
             // cartCountNum = <CartCount count = {this.state.ProductCount} />
             console.log(this.props.Cart);

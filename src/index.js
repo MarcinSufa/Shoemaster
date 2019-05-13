@@ -8,13 +8,15 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import productListReducer from './store/reducers/productList';
 import cartReducer from './store/reducers/cart';
+import authReducer from './store/reducers/auth';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     cart: cartReducer,
-    productList: productListReducer
+    productList: productListReducer,
+    auth: authReducer
 });
 
 const store = createStore( rootReducer, composeEnhancers(

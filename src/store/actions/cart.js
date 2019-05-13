@@ -36,7 +36,6 @@ export const fetchLocalStoreCart = () => {
             fullCartPrice += allCartPrices[i].price;
         }
         dispatch( addToCartSuccess(localCartProducts, fullCartPrice ));
-        console.log(localCartProducts);
         } else {
             localCartProducts = [];
             dispatch (addToCartFail());
@@ -52,14 +51,12 @@ export const deleteFromCart = (event) => {
         let prevLocalCart = JSON.parse(localStorage.getItem('addToCart'));
         let cartProductId = event.currentTarget.value;
         prevLocalCart.splice(cartProductId ,1);
+
         // Cart Counter decrease 
         let cartCounterDel = (Object.keys(prevLocalCart).length);
-        console.log('cartCounerDel' + cartCounterDel);
         dispatch (deleteFromCartStore (cartCounterDel));
 
-        console.log(prevLocalCart);
         localStorage.setItem('addToCart', JSON.stringify(prevLocalCart));
-        console.log(cartProductId);
         // dispatch(deleteFromCartStore(event));
     };
 }

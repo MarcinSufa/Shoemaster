@@ -57,3 +57,18 @@ pointer-events: none;
     background-color: #6a1b9a;
     color: white;
 }
+
+.Danger {
+    border: 1px solid #4a148c;
+    background-color: white;
+    border-radius: 25px;
+    color: #4a148c;
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+.Danger:hover {
+    background-color: #4a148c;
+    color: white;
+    cursor: pointer;
+}

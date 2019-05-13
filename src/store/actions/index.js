@@ -14,3 +14,6 @@ export {
 export {
     clearLocalStore
 }from './checkout';
+export {
+    auth
+}from './auth';
