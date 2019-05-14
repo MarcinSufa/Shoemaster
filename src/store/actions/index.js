@@ -15,5 +15,7 @@ export {
     clearLocalStore
 }from './checkout';
 export {
-    auth
+    auth,
+    logout,
+    authCheckState
 }from './auth';

@@ -32,7 +32,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cartItemsCounter: action.cartItemsCounter,
                 loading: false,
-            };     
+            }; 
+        case actionTypes.CHECKOUT:    
+            return {
+                ...state,
+                cart: null,
+                loading: false,
+            };          
         default:    
             return state;
     }

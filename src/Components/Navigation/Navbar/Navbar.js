@@ -12,8 +12,12 @@ class  Navbar extends Component {
 
     render () {
         let cartCountNum = null;
+        let accountLink = null;
         if (this.props.cartCounter) {
             cartCountNum = <CartCount count = {this.props.cartCounter} />
+        } 
+        if ( this.props.isAuthenticated) {
+            accountLink = <NavLink to="/Account" className="">Account</NavLink>
         }
 
         return (
@@ -22,8 +26,10 @@ class  Navbar extends Component {
                 <NavLink to="/" className="">Shoemaster.com</NavLink>
                 </ul>
                 <ul className='RightNavLink'>
-                <li>About </li>
-                <li><NavLink to="/Login" className="">Log-in</NavLink> </li>
+                <li>{accountLink}</li>
+                {this.props.isAuthenticated? 
+                <li><NavLink to="/Logout" className="">Logout</NavLink> </li>
+                :<NavLink to="/Login" className="">Login</NavLink>}
                 <li><NavLink to="/Cart" className="">Cart</NavLink>{cartCountNum}</li>
                 </ul>
             </nav>
@@ -36,8 +42,9 @@ class  Navbar extends Component {
 const mapStateToProps = state => {
     return {
         cartCounter: state.cart.cartItemsCounter,
+        isAuthenticated: state.auth.token !== null
     };
-}
+};
 
 
 

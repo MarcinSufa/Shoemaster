@@ -109,9 +109,8 @@ class FullProductInfo extends Component {
             <button >Made off:</button>
             <h3>Chose your size</h3>
             <div>{productSize }</div>
-        <hr></hr>
+            <hr/>
             {addToCartBtn}
-
         </div>
     </div>
     </React.Fragment>

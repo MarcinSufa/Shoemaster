@@ -27,12 +27,15 @@ cartCountHandler = () => {
 
 goToCheckout = (event) => {
     event.preventDefault();
-    this.props.history.replace('/Checkout');  
+    if(this.props.isAuthenticated) {
+        this.props.history.replace('/Checkout');  
+    } else {
+        this.props.history.replace('/Login');  
+    }
 }
 
 componentDidMount () {
     this.props.onInitCart();
-    console.log(this.props.Cart);
 } 
 
     render() {
@@ -46,7 +49,6 @@ componentDidMount () {
         }  else if (this.props.fullPrice !== 0 && this.props.Cart ) {
             fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
             // cartCountNum = <CartCount count = {this.state.ProductCount} />
-            console.log(this.props.Cart);
             printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
                 return (
                 <div className='ProductInCart' key={shoes[0]}> 
@@ -60,7 +62,7 @@ componentDidMount () {
                 </div>                 
                 );
             }));
-            checkoutBtn = <Button clicked={ this.goToCheckout}> Checkout </Button>
+            checkoutBtn = <Button clicked={ this.goToCheckout}>{this.props.isAuthenticated? 'Checkout' : 'Signup to Order'} </Button>
         } else  {
             printCartProducts= (
                 <div>
@@ -89,7 +91,8 @@ const mapStateToProps = state => {
     return {
         Cart: state.cart.cart,
         loading: state.cart.loading,
-        fullPrice: state.cart.fullCartPrice
+        fullPrice: state.cart.fullCartPrice,
+        isAuthenticated: state.auth.token !== null
     };
 }
 

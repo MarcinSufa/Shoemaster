@@ -5,6 +5,7 @@ import './Auth.css';
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 import Spinner from '../../Components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 
 class Auth extends Component {
@@ -112,9 +113,18 @@ checkValidity (value, rules) {
             errorMessage = (
                 <p className='error'>Unfortunately! {this.props.error.message.replace(/_/g, ' ')}</p>
             );
+        };
+
+        let authRedirect = null;
+        if ( this.props.isAuthenticated && this.props.onRedirectBackToCart) {
+            authRedirect = <Redirect to="/Cart"/>
+        }
+        else if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to="/"/>
         }
         return (
             <div className='Auth'>
+                {authRedirect}
                 {errorMessage}
                 <h3 className='AuthHeader'>{this.state.isSignup? 'Sign-up' : 'Login'}</h3>
                 <form onSubmit={this.submitHandler}>
@@ -132,8 +142,10 @@ checkValidity (value, rules) {
 
 const mapStateToProps = state => {
     return {
+        onRedirectBackToCart: state.cart.cart,
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null
     };
 };
 
