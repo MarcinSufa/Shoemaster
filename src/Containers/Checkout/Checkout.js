@@ -100,7 +100,7 @@ class Checkout extends Component {
 
 
     orderHandler = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         this.setState ({loading: true});
         const customerData = {};
         let userToken = this.props.token;
@@ -115,11 +115,11 @@ class Checkout extends Component {
             Price: this.props.fullPrice,
             userId: this.props.userId
         } 
-
     axios.post ('/orders.json?auth=' + userToken, order)
         .then ( response => {
             this.setState({loading: false});
             this.props.cartDeleteHandler();
+            this.props.onUpdateCart();
             //to do - render success component
         })
         .then ( () => this.props.history.replace('/'))
@@ -266,6 +266,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onInitCheckout: () => dispatch(checkoutListActions.fetchLocalStoreCart()),
         cartDeleteHandler: () => dispatch(checkoutListActions.clearLocalStore()),
+        onUpdateCart: () => dispatch(checkoutListActions.fetchLocalStoreCart()),
     };
 }
 

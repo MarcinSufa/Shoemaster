@@ -8,10 +8,10 @@ export const addToCartSuccess = (localCartProducts, fullCartPrice) => {
     };
 }
 
-export const addToCartFail = (error) => {
+export const addToCartFail = (localCartProducts) => {
     return { 
         type: actionTypes.FETCH_CART_FROM_LOCAL_FAIL,
-        error: error
+        cart: localCartProducts
     };
 }
 
@@ -36,9 +36,9 @@ export const fetchLocalStoreCart = () => {
             fullCartPrice += allCartPrices[i].price;
         }
         dispatch( addToCartSuccess(localCartProducts, fullCartPrice ));
-        } else {
-            localCartProducts = [];
-            dispatch (addToCartFail());
+        } else  {
+            localCartProducts = null;
+            dispatch (addToCartFail(localCartProducts));
         }
         
     };

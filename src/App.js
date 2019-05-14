@@ -32,6 +32,7 @@ componentDidMount () {
         <Switch>
           <Route path="/Cart" component={Cart}/>
           <Route path="/Logout" component={Logout}/>
+          <Route path="/Login" component={Auth}/>
           <Route path="/Account" component={Account}/>
           <Route path="/Checkout" component={Checkout}/>
           <Route path="/" exact component={ProductList}/>

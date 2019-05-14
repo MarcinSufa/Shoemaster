@@ -119,7 +119,7 @@ checkValidity (value, rules) {
         if ( this.props.isAuthenticated && this.props.onRedirectBackToCart) {
             authRedirect = <Redirect to="/Cart"/>
         }
-        else if (this.props.isAuthenticated) {
+        else if (this.props.isAuthenticated && this.props.onRedirectBackToCart == null ) {
             authRedirect = <Redirect to="/"/>
         }
         return (
@@ -145,7 +145,7 @@ const mapStateToProps = state => {
         onRedirectBackToCart: state.cart.cart,
         loading: state.auth.loading,
         error: state.auth.error,
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !==null
     };
 };
 

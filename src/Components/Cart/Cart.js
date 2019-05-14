@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Cart.css';
 import Spinner from "../UI/Spinner/Spinner";
 import emptyCartImg from '../../assets/images/empty.png';
-// import CartCount from "./CartCount/CartCount";
 import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as cartListActions from '../../store/actions/index';
@@ -48,7 +47,6 @@ componentDidMount () {
             return <Spinner/>
         }  else if (this.props.fullPrice !== 0 && this.props.Cart ) {
             fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
-            // cartCountNum = <CartCount count = {this.state.ProductCount} />
             printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
                 return (
                 <div className='ProductInCart' key={shoes[0]}> 
