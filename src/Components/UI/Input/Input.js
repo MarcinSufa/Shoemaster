@@ -11,9 +11,13 @@ const input = (props) => {
     }
 
     let validationError = null;
+    let errorMessage = props.value;
     if (props.invalid && props.touched) {
+        if (props.elementConfig.type == 'password') {
+            errorMessage = null;
+        }
     validationError = <p className={styles.ValidationError}>
-    {props.elementConfig.placeholder} {props.value} is not valid, try again!</p>;
+    {props.elementConfig.placeholder} {errorMessage} is not valid, try again!</p>;
     }
     switch (props.elementType) {
         case ('input'):

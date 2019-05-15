@@ -28,3 +28,20 @@
     }
 }
 
+.sizeAlert, .continueAlert {
+    top:0;
+    margin: 0 auto;
+    color: red;
+    width:auto;
+    right: initial;
+    left: initial;
+    position: fixed;
+    font-size:20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.continueAlert {
+    color: #6a1b9a;
+    padding: 0 20px 10px;
+}

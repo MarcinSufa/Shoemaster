@@ -35,19 +35,18 @@ render () {
         spinner = (<Spinner/>);
     }
     if (this.state.accountData) {
-        console.log(Object.values(this.state.accountData));
-        showOrders = (Object.values(this.state.accountData).map((shoes, index) => {
+        console.log(Object.entries(this.state.accountData));
+        showOrders = (Object.entries(this.state.accountData).map((order) => {
             return (
-            <div className='ProductInCart' key={shoes.index}> 
-            <div><p>Price: {shoes.Price}</p></div>
-            <div><p>Date: {shoes.OrderDate}</p></div>
-            {/* <div className='cartProductDelete ' ><img className='SmallProductImage' src={shoes[1].image} alt='nike shoes'></img></div>
-                <div className='CartProductInfo'><h4>Brand</h4><p>{shoes[1].brand}</p></div>
-                <div className='CartProductInfo'><h4>Model</h4><p>{shoes[1].model}</p></div>
-                <div className='CartProductInfo'><h4>Quantity</h4><p>{shoes[1].quantity}</p></div>
-                <div className='CartProductInfo'><h4>Size</h4><p>{shoes[1].size}</p> </div>
-                <div className='CartProductInfo'><h4>Price</h4><p>{shoes[1].price}$</p> </div> */}
-            </div>                 
+            <div className='ProductInCart' key={order[0]}> 
+                <div className='CartProductInfo'><h4>Price: </h4><p>{order[1].Price} $</p></div>
+                <div className='CartProductInfo'><h4>Email</h4> <p>{order[1].CustomerData.email.value}</p> </div>
+                <div className='CartProductInfo'><h4>Name:</h4> <p>{order[1].CustomerData.name.value}</p></div>
+                <div className='CartProductInfo'><h4>Street:</h4> <p>{order[1].CustomerData.street.value}</p></div>
+                <div className='CartProductInfo'><h4>Zip Code:</h4> <p>{order[1].CustomerData.zipCode.value}</p></div>
+                <div className='CartProductInfo'><h4>No:</h4> <p>{order[1].OrderDetails.length}</p></div>
+                <div className='CartProductInfo'><h4>Date:</h4> <p>{order[1].OrderDate}</p></div> 
+            </div>              
             );
         }));
 
@@ -56,7 +55,7 @@ render () {
     return (
         <div>
             {spinner}
-            <h1>Your Account</h1>
+            <h1>Your Orders</h1>
             {showOrders}
         </div>
     );

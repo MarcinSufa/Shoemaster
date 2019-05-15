@@ -3,6 +3,7 @@ import  './Navbar.modules.css';
 import { NavLink } from 'react-router-dom';
 import CartCount from '../../Cart/CartCount/CartCount';
 import { connect } from 'react-redux';
+import shoppingCartImg from '../../../assets/images/shopping-cart.svg';
 
 
 class  Navbar extends Component {
@@ -30,7 +31,9 @@ class  Navbar extends Component {
                 {this.props.isAuthenticated? 
                 <li><NavLink to="/Logout" className="">Logout</NavLink> </li>
                 :<NavLink to="/Login" className="">Login</NavLink>}
-                <li><NavLink to="/Cart" className="">Cart</NavLink>{cartCountNum}</li>
+                <li><NavLink to="/Cart" className="">
+                <img className="shoppingCart" src={shoppingCartImg} alt="shopping cart"/>
+                {cartCountNum}</NavLink></li>
                 </ul>
             </nav>
         );

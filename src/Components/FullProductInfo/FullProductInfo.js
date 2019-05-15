@@ -5,6 +5,8 @@ import Button from '../UI/Button/Button';
 import Modal from '../UI/Modal/Modal';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import productAddedImg from '../../assets/images/done.png';
+import warningImg from '../../assets/images/warning.png';
 
 class FullProductInfo extends Component {
 
@@ -15,7 +17,8 @@ class FullProductInfo extends Component {
         price: null,
         image: null,
         addedToCart: false,
-        sizeNotSelected: false
+        sizeNotSelected: false,
+        continueToCart: false
     }
 
 
@@ -41,6 +44,7 @@ class FullProductInfo extends Component {
                 }
                 this.props.onAddToCart(cartProduct);
                 console.log(localStorage);   
+                this.setState({continueToCart: true})
                 // axios.post( '/Cart.json', cartProduct )
                 // .then( response => this.props.history.replace('/Cart')) 
                 // .catch( error => console.log(error));
@@ -61,17 +65,41 @@ class FullProductInfo extends Component {
         this.setState({size: sizKey[0]});
         console.log(this.state.size);
     }
+
+    continueHandler = (event) => {
+        this.props.history.push('/');
+        this.setState({continueToCart: false});
+    }
+
+    goToCartHandler = () => {
+        this.props.history.push('/Cart');
+        this.setState({continueToCart: false});
+    }
     
     render () {
         let alertSizeSelect = null;
-        let alertStyle={color:'red'};
+        let askIfContinue = null;
+
         if (this.state.sizeNotSelected) {
             alertSizeSelect = (
-            <Modal modalClosed={this.alertHandler}>
-                <p style={alertStyle}>Please Select your size!</p>
+            <Modal className={'sizeAlert'} modalClosed={this.alertHandler}>
+            <img className='productAddedImg' src={warningImg} alt='Product added to cart'/>
+            <div className='alertStyle'> <p>Please Select your size!</p></div>
             </Modal>
             ); 
         }
+
+        if(this.state.continueToCart) {
+            askIfContinue = (
+                <Modal className={'continueAlert'}>
+                    <h4>Product was added to Cart</h4>
+                    <img className='productAddedImg' src={productAddedImg} alt='Product added to cart'/>
+                    <Button clicked={this.continueHandler}>Continue Shopping</Button>
+                    <Button clicked={this.goToCartHandler}>Go to Cart</Button>
+                </Modal>
+            )
+        }
+
         const productSize = Object.entries(this.props.size)
         .map((sizKey, i) => {
             if(sizKey[1] === 0) {
@@ -111,6 +139,7 @@ class FullProductInfo extends Component {
             <div>{productSize }</div>
             <hr/>
             {addToCartBtn}
+            {askIfContinue}
         </div>
     </div>
     </React.Fragment>

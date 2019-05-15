@@ -45,3 +45,8 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.shoppingCart {
+    height: 20px;
+    width: auto;
+}

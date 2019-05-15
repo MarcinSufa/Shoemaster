@@ -83,8 +83,8 @@ class Checkout extends Component {
                 elementType:'select',
                 elementConfig: {
                     options: [
-                    {value: 'fastest', displayValue: 'Fastest'},
-                    {value: 'cheapest', displayValue: 'Cheapest'},
+                    {value: 'fastest', displayValue: 'Delivery - Fastest'},
+                    {value: 'cheapest', displayValue: 'Delivery - Cheapest'},
                 ]
                 },
                 value: 'fastest',
@@ -107,7 +107,7 @@ class Checkout extends Component {
         for (let formElementIdentifier in this.state.CustomerData) {
             customerData[formElementIdentifier] = this.state.CustomerData[formElementIdentifier]
         }
-        let OrderDate = new Date ();
+        let OrderDate = new Date().toLocaleString();
         const order = {
             OrderDetails: this.props.Cart,
             CustomerData:  customerData,
