@@ -1,10 +1,11 @@
 import * as actionTypes from './actionTypes';
 
-export const addToCartSuccess = (localCartProducts, fullCartPrice) => {
+export const addToCartSuccess = (localCartProducts, fullCartPrice, productsInCart) => {
     return {
         type: actionTypes.FETCH_CART_FROM_LOCAL_STORE,
         localCart: localCartProducts,
-        fullCartPrice: fullCartPrice
+        fullCartPrice: fullCartPrice,
+        cartItemsCounter: productsInCart
     };
 }
 
@@ -35,7 +36,8 @@ export const fetchLocalStoreCart = () => {
         for (let i = 0; i < allCartPrices.length; i++) {
             fullCartPrice += allCartPrices[i].price;
         }
-        dispatch( addToCartSuccess(localCartProducts, fullCartPrice ));
+        let productsInCart = allCartPrices.length;
+        dispatch( addToCartSuccess(localCartProducts, fullCartPrice, productsInCart ));
         } else  {
             localCartProducts = null;
             dispatch (addToCartFail(localCartProducts));

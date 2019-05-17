@@ -14,6 +14,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cart: action.localCart,
                 fullCartPrice: action.fullCartPrice,
+                cartItemsCounter: action.cartItemsCounter,
                 loading: false,
             };
         case actionTypes.FETCH_CART_FROM_LOCAL_FAIL:    

@@ -13,7 +13,7 @@ const input = (props) => {
     let validationError = null;
     let errorMessage = props.value;
     if (props.invalid && props.touched) {
-        if (props.elementConfig.type == 'password') {
+        if (props.elementConfig.type === 'password') { //Prevent showing user input on error message when typing password
             errorMessage = null;
         }
     validationError = <p className={styles.ValidationError}>

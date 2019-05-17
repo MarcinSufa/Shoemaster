@@ -18,20 +18,21 @@ class  Navbar extends Component {
             cartCountNum = <CartCount count = {this.props.cartCounter} />
         } 
         if ( this.props.isAuthenticated) {
-            accountLink = <NavLink to="/Account" className="">Account</NavLink>
+            accountLink = <li><NavLink activeClassName='activeLink' to="/Account" className="NavLink">Account</NavLink></li>
         }
 
         return (
             <nav className='NavBarDiv'>
                 <ul className='LeftNavLink'>
-                <NavLink to="/" className="">Shoemaster.com</NavLink>
+                <NavLink to="/" activeClassName="rootActive" exact className="Logo">Shoemaster.com</NavLink>
                 </ul>
                 <ul className='RightNavLink'>
-                <li>{accountLink}</li>
+                {accountLink}
                 {this.props.isAuthenticated? 
-                <li><NavLink to="/Logout" className="">Logout</NavLink> </li>
-                :<NavLink to="/Login" className="">Login</NavLink>}
-                <li><NavLink to="/Cart" className="">
+                <li><NavLink activeClassName='activeLink' to="/Logout" className="NavLink">Logout</NavLink></li>
+                :<li><NavLink activeClassName='activeLink' to="/Login" className="NavLink">Login</NavLink></li>
+                }
+                <li><NavLink activeClassName='activeLink' to="/Cart" className="NavLink">
                 <img className="shoppingCart" src={shoppingCartImg} alt="shopping cart"/>
                 {cartCountNum}</NavLink></li>
                 </ul>

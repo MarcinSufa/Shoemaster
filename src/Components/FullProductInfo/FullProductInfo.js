@@ -119,29 +119,30 @@ class FullProductInfo extends Component {
 
     return (
         <React.Fragment> 
-    <div className='FullProductCard' >
-        <div className='FullProductLeft'>
-        <img className='FullProductImage' src={this.props.image} alt='nike shoes'></img>
-        </div>
-        <div className="FullProductRigth">
-        {alertSizeSelect}
-            <h1>{this.props.brand}</h1>
-            <span><h2>{this.props.model}</h2></span>   
-            <h4>Product id: {this.props.id} </h4>
-            <p>{this.props.description}</p>
-            <br />
-            <div ><h3 className='FullPriceTag'>{this.props.price} $</h3></div>
-            <br />
-            <div>
+        <div  className='close' onClick={this.props.exit}/>
+        <div className='FullProductCard' >
+            <div className='FullProductLeft'>
+            <img className='FullProductImage' src={this.props.image} alt='nike shoes'></img>
             </div>
-            <button >Made off:</button>
-            <h3>Chose your size</h3>
-            <div>{productSize }</div>
-            <hr/>
-            {addToCartBtn}
-            {askIfContinue}
+            <div className="FullProductRigth">
+            {alertSizeSelect}
+                <h1>{this.props.brand}</h1>
+                <span><h2>{this.props.model}</h2></span>   
+                <h4>Product id: {this.props.id} </h4>
+                <p>{this.props.description}</p>
+                <br />
+                <div ><h3 className='FullPriceTag'>{this.props.price} $</h3></div>
+                <br />
+                <div>
+                </div>
+                <button >Made off:</button>
+                <h3>Chose your size</h3>
+                <div>{productSize }</div>
+                <hr/>
+                {addToCartBtn}
+                {askIfContinue}
+            </div>
         </div>
-    </div>
     </React.Fragment>
     );
     }   
