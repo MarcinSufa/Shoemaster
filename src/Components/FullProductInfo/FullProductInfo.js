@@ -122,7 +122,7 @@ class FullProductInfo extends Component {
         <div  className='close' onClick={this.props.exit}/>
         <div className='FullProductCard' >
             <div className='FullProductLeft'>
-            <img className='FullProductImage' src={this.props.image} alt='nike shoes'></img>
+            <img className='FullProductImage' src={this.props.image} alt={this.props.model + ' shoe image'}></img>
             </div>
             <div className="FullProductRigth">
             {alertSizeSelect}

@@ -11,6 +11,7 @@ import Logout from './Containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 import Account from './Containers/Account/Account';
 
+
 class App extends Component {
 componentDidMount () {
   this.props.onTryAutoSignup();

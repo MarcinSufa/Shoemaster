@@ -19,7 +19,7 @@ const Product = (props) => {
     
     return (
     <div className='ProductCard' onClick={props.clicked}>
-        <div className='ImagePlaceholder'><h3 className='PriceTag'>{props.price} $</h3><img className='ProductImage' src={props.image} alt='nike shoes'></img></div>
+        <div className='ImagePlaceholder'><h3 className='PriceTag'>{props.price} $</h3><img className='ProductImage' src={props.image} alt={props.model + ' image'}></img></div>
             <span><h2>{props.brand}</h2></span> <span></span>
             <h3>{props.model}</h3>
         <div>

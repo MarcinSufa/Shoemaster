@@ -5,6 +5,7 @@ import emptyCartImg from '../../assets/images/empty.png';
 import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as cartListActions from '../../store/actions/index';
+
 class Cart extends Component {
 
 state= {

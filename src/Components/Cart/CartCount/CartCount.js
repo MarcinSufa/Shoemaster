@@ -6,7 +6,6 @@ const CartCount = (props) => {
     return (
         <button className='CartCountNum'>{props.count}</button>
     );
-
 }
 
 export default CartCount;

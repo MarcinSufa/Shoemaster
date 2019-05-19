@@ -19,14 +19,12 @@
     font-family: Roboto; 
     font-size: 20px;
     color: black;
-    /* justify-content: space-between; */
     display: inline-block;
 }
 .RightNavLink {
     font-family: Roboto; 
     font-size: 20px;
     color: black;
-    /* justify-content: space-between; */
     display: inline-block;
     padding-right: 20px;
     
@@ -46,8 +44,8 @@ a  {
 }
 
 .shoppingCart {
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: auto;
 }
 
 .activeLink {
@@ -60,6 +58,9 @@ a  {
     border-color: #6a1b9a;
     background-color: #6a1b9a;
     
+}
+.NavLink {
+    padding: 10px 30px;
 }
 
 .NavLink:hover {
@@ -75,4 +76,41 @@ a  {
     color:white;
     border-radius: 49% 51% 58% 42% / 35% 74% 26% 65%;
     background-color: #4a148c;
+}
+
+.HamMenu {
+    padding: 0px 20px 20px;
+}
+
+.NavLinkMobile{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.mobileLinksWrapper {
+    display: flex; 
+    flex-direction: column;
+    padding-left: 0;
+}
+
+@media(max-width: 620px) {
+    .NavLink {
+        display: none;
+    }
+    .RightNavLink {
+        padding: 0;
+        order:1;
+    }
+    .LeftNavLink {
+        order:2;
+    }
+}
+
+@media(min-width: 621px) {
+    .HamMenu{
+        display: none;
+    }
 }
