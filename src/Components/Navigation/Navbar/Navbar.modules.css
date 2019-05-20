@@ -79,7 +79,7 @@ a  {
 }
 
 .HamMenu {
-    padding: 0px 20px 20px;
+    padding: 0px 20px 0px;
 }
 
 .NavLinkMobile{
@@ -106,7 +106,13 @@ a  {
     }
     .LeftNavLink {
         order:2;
+        padding-right: 10px;
     }
+    .NavLinkMobile {
+        flex-direction: row;
+        justify-content: center;
+    }
+
 }
 
 @media(min-width: 621px) {

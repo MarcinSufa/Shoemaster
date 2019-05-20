@@ -5,7 +5,7 @@ import CartCount from '../../Cart/CartCount/CartCount';
 import { connect } from 'react-redux';
 import shoppingCartImg from '../../../assets/images/shopping-cart.svg';
 import HamburgerMenu from '../../UI/HamburgerMenu/HamburgerMenu';
-
+import * as navbarListActions from '../../../store/actions/index';
 
 class  Navbar extends Component {
 
@@ -19,13 +19,21 @@ class  Navbar extends Component {
             console.log(this.state.menuIsClicked);
     }
 
+    closeMenuHandler = () => {
+        this.setState({menuIsClicked: false});
+    }
+
+    componentDidMount () {
+        this.props.initCartCouter();
+    }
+
 
     render () { 
         let linkStyling = 'NavLink';
         let rightLinkWrapper = 'RightNavLink';
-        let cartCountNum = null;
-        let accountLink = null;
-        let menuIsOpen = null;
+        let cartCountNum = '';
+        let accountLink = '';
+        let menuIsOpen = '';
 
         if (this.state.menuIsClicked) {
             linkStyling = 'NavLinkMobile';
@@ -36,22 +44,22 @@ class  Navbar extends Component {
             cartCountNum = <CartCount count = {this.props.cartCounter} />
         } 
         if ( this.props.isAuthenticated) {
-            accountLink = <NavLink activeClassName='activeLink' to="/Account" className={linkStyling}>Account</NavLink>
+            accountLink = <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Account" className={linkStyling}>Account</NavLink>
         }
 
         return (
             <nav className='NavBarDiv'>
                 <ul className='LeftNavLink'>
-                <NavLink to="/" activeClassName="rootActive" exact className="Logo">Shoemaster.com</NavLink>
+                <NavLink onClick={this.closeMenuHandler} to="/" activeClassName="rootActive" exact className="Logo">Shoemaster.com</NavLink>
                 </ul>
                 <ul className={rightLinkWrapper}>
                 <div className='HamMenu'><HamburgerMenu className={menuIsOpen} clicked={this.menuClickedHandler}/></div>
                 {accountLink}
                 {this.props.isAuthenticated? 
-                <NavLink activeClassName='activeLink' to="/Logout" className={linkStyling}>Logout</NavLink>
-                :<NavLink activeClassName='activeLink' to="/Login" className={linkStyling}>Login</NavLink>
+                <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Logout" className={linkStyling}>Logout</NavLink>
+                :<NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Login" className={linkStyling}>Login</NavLink>
                 }
-                <NavLink activeClassName='activeLink' to="/Cart" className={linkStyling}>
+                <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Cart" className={linkStyling}>
                 <img className="shoppingCart" src={shoppingCartImg} alt="shopping cart"/>
                 {cartCountNum}</NavLink>
                 </ul>
@@ -70,6 +78,11 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        initCartCouter: () => dispatch(navbarListActions.fetchLocalStoreCart()),
+    };
+}
 
 
-export default connect(mapStateToProps) (Navbar);
+export default connect(mapStateToProps, mapDispatchToProps) (Navbar);
