@@ -126,39 +126,15 @@ class Checkout extends Component {
         .catch (error => {
             this.setState({loading: false});
         });  
-
-    // axios.delete(`/Cart.json`)
-    //     .then(res => {
-    //         this.setState({loading: false});
-    //         this.props.history.replace('/');  
-    //     })
-    //     .catch (error => {
-    //         this.setState({loading: false});
-    //     })    
     }
 
     componentDidMount (props) {
         if(!this.props.token) {
             this.props.history.replace('/');
         }
-        // this.setState({loading: true});
         this.props.onInitCheckout();        
-        // this.setState( { Order: this.props.Cart, loading: false } );
         console.log(this.props.Cart)
         console.log(this.state.Order)
-        // if (this.state.Order==null) {
-        //     this.props.history.replace('/');
-        // }
-
-
-        // axios.get( '/Cart.json' )
-        // .then( response => {
-        //     this.setState( { Order: response.data, loading: false });
-        // })
-        // .then( (response) => (this.state.Order==null)? this.props.history.replace('/'): this.fullPriceCheckout()) 
-        // .catch( error => {
-        //     this.setState( { error: error, loading: false } );
-        // })
     } 
     
     fullPriceCheckout = () => {
@@ -204,11 +180,16 @@ class Checkout extends Component {
         this.setState({CustomerData: updatedCustomerData, formIsValid:formIsValid})
     }
 
+        // redirect to Cart if user want to edit // 
+    handleCartEdit = () => {
+        this.props.history.replace('/Cart');
+    }
+
     render ()  {
-        // let orderPrice = <h3>{Object.values(this.state.checkoutPrice)}</h3>
         let orderPrice = this.props.fullPrice;
         let form = null;
         let formElementArray = [];
+        let  printCheckoutProducts = null;
         for (let key in this.state.CustomerData){
             formElementArray.push({
                 id: key,
@@ -219,7 +200,7 @@ class Checkout extends Component {
             return <Spinner/> 
         }
         else if(this.props.fullPrice) {
-            orderPrice = <h3>{this.props.fullPrice} $</h3>
+            orderPrice = <h4>{this.props.fullPrice} $</h4>
             form = (
                 <form onSubmit={this.orderHandler}>
                     <h3>Contact Data</h3>
@@ -238,15 +219,40 @@ class Checkout extends Component {
                     <Button disabled={!this.state.formIsValid}>ORDER</Button>
                 </form>
             )
+
+            printCheckoutProducts = (Object.entries(this.props.Cart).map((product) => {
+                return (
+                <div className='ProductInCheckout' key={product[0]}> 
+                <div className='CheckoutProductInfo' ><img className='CheckoutProductImage' src={product[1].image} alt='nike shoes'></img></div>
+                    <div className='ProductWrapper'>
+                        <div className='CheckoutProductInfo'><p>{product[1].brand}</p><p>{product[1].model}</p><p>{product[1].size}</p></div>
+                        <div className='CheckoutProductInfo'><p>{product[1].price}$</p> </div>
+                    </div>
+                </div>                 
+                );
+            }));
+
         }
         return (
-            <div>
+            <div className='Checkoutwrapper'>
                 <h1>Checkout</h1>
-                <hr></hr>
-                <h3>Your Order info</h3>
-                <h3>Order Price: </h3>{orderPrice} 
-                <p>Product list</p>
-                {form}
+                    <hr></hr>
+                <div className='CheckoutTemplate'>
+                    <div className ='CheckoutForm'>
+                        {form}
+                    </div>
+                    <div className='CheckoutSummary'>
+                        <h3>Order Summary</h3>
+                        <hr></hr>
+                        <div className='OrderFullPrice'>
+                        <h4>Order Price: </h4>{orderPrice}
+                        </div>
+                        <p>Product list</p>
+                        { printCheckoutProducts}
+                        <div className='editCartBtn'><Button btnType='editCartBtn' clicked={this.handleCartEdit}>Edit</Button></div>
+                    </div>
+                    
+                </div>
             </div>
         );
     }

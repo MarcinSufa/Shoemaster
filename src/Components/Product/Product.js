@@ -25,7 +25,7 @@ const Product = (props) => {
         <div>
             {productSize}
         </div>
-        <button className='btnShoeMadeOf'>Made off:</button>
+        <button className='btnShoeMadeOf'>Made off</button>
         <div className='ShoeMaterials' >
             <span>upper: <div className="ShoeAvailableSize" >{props.madeOf.upper}</div></span>
             <span>lining:<div className="ShoeAvailableSize" >{props.madeOf.lining}</div> </span>

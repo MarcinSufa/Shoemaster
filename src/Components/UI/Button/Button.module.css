@@ -25,7 +25,9 @@ border: 1px solid  #eeeeee;
 pointer-events: none;
 }
 
-
+.editCartBtn {
+    margin:0;
+}
 .ShoeNotAvailableSize {
     text-decoration: line-through;
     display: inline-flex;

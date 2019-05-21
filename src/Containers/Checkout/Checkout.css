@@ -24,3 +24,98 @@ background-color:  #eeeeee ;
 border: 1px solid  #eeeeee;
 pointer-events: none;
 }
+
+.Checkoutwrapper {
+    width: 1100px;
+    margin:auto;
+
+}
+
+.CheckoutTemplate {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    padding-top: 30px;
+}
+
+.CheckoutForm {
+    margin: 10px;
+    padding: 0px 20px;
+}
+
+.CheckoutSummary {
+    margin: 10px;
+    background-color: black;
+    color: white;
+    text-align:left;
+    padding: 0px 20px;
+}
+
+.OrderFullPrice {
+    justify-content: space-between;
+    display:flex;
+}
+
+.CheckoutProductImage {
+    width:100px;
+    margin-right: 20px;
+}
+
+.CheckoutCartInfo {
+    margin:0;
+    padding:0;
+    text-align: left;
+    justify-content: space-between;
+}
+
+.CheckoutCartInfo, p {
+    margin-block-start: 0;
+}
+
+.ProductInCheckout {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.ProductWrapper {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.editCartBtn {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 1160px) {
+    
+    .Checkoutwrapper {
+        width: 100%;
+    }
+    .CheckoutTemplate {
+        grid-template-columns: 50% 50%;
+    }
+    .CheckoutSummary {
+        padding: 5px 20px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 820px) {
+    .CheckoutTemplate {
+        display: flex;
+        flex-direction: column;
+    }
+    .Checkoutwrapper {
+        width: 100%;
+    }
+    
+    .CheckoutSummary {
+        padding: 5px 20px;
+        margin-top: 20px;
+    }
+
+}
