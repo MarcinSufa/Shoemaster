@@ -3,6 +3,7 @@ import './Cart.css';
 import Spinner from "../UI/Spinner/Spinner";
 import emptyCartImg from '../../assets/images/empty.png';
 import Button from '../UI/Button/Button';
+import CartProductList from './CartProductList/CartProductList';
 import { connect } from 'react-redux';
 import * as cartListActions from '../../store/actions/index';
 
@@ -50,15 +51,18 @@ componentDidMount () {
             fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
             printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
                 return (
-                <div className='ProductInCart' key={shoes[0]}> 
-                <div className='cartProductDelete ' ><img className='SmallProductImage' src={shoes[1].image} alt='nike shoes'></img></div>
-                    <div className='CartProductInfo'><h4>Brand</h4><p>{shoes[1].brand}</p></div>
-                    <div className='CartProductInfo'><h4>Model</h4><p>{shoes[1].model}</p></div>
-                    <div className='CartProductInfo'><h4>Quantity</h4><p>{shoes[1].quantity}</p></div>
-                    <div className='CartProductInfo'><h4>Size</h4><p>{shoes[1].size}</p> </div>
-                    <div className='CartProductInfo'><h4>Price</h4><p>{shoes[1].price}$</p> </div>
-                    <div className='cartProductDelete'><Button  value={shoes[0]} clicked={this.handleDelete}>Delete</Button></div>
-                </div>                 
+                    <CartProductList 
+                        key={shoes[0]}
+                        id={shoes[0]}
+                        image={shoes[1].image}
+                        alt={shoes[1].brand + ' ' + shoes[1].model}
+                        brand={shoes[1].brand}
+                        model={shoes[1].model}
+                        quantity={shoes[1].quantity}
+                        size={shoes[1].size}
+                        price={shoes[1].price}
+                        onClick={this.handleDelete}
+                    />             
                 );
             }));
             checkoutBtn = <Button clicked={ this.goToCheckout}>{this.props.isAuthenticated? 'Checkout' : 'Signup to Order'} </Button>

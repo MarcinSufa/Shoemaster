@@ -1,0 +1,39 @@
+.ProductInCart {
+    text-align: center;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+    0 1px 2px rgba(0,0,0,0.24);
+    margin:auto;    
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: stretch;
+    justify-content: space-between;
+    align-items: top;
+    /* background-color: #F6F6F6; */
+}
+
+
+.ProductInCart:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+    0 10px 10px rgba(0,0,0,0.22);  
+}
+
+
+.CartProductInfo {
+    margin:0 15px;
+    text-align: center;
+    width: 10%;
+}
+
+.SmallProductImage {
+    width: 100px;
+    z-index:-1;
+}
+
+
+.cartProductDelete {
+    align-items: center;
+    vertical-align: bottom;
+    display: flex;
+}
