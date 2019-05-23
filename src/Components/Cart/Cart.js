@@ -23,7 +23,6 @@ handleDelete = (event) => {
 cartCountHandler = () => {
     let cartProductsNum = (Object.keys(this.state.Cart).length);
     this.setState({ProductCount: cartProductsNum});
-    console.log(cartProductsNum);
 }   
 
 goToCheckout = (event) => {

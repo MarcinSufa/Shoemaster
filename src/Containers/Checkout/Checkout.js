@@ -180,7 +180,7 @@ class Checkout extends Component {
         this.setState({CustomerData: updatedCustomerData, formIsValid:formIsValid})
     }
 
-        // redirect to Cart if user want to edit // 
+        // redirect to /Cart if user want to edit cart  // 
     handleCartEdit = () => {
         this.props.history.replace('/Cart');
     }
@@ -199,7 +199,7 @@ class Checkout extends Component {
         if(this.props.loading) {
             return <Spinner/> 
         }
-        else if(this.props.fullPrice) {
+        else if(this.props.fullPrice && this.props.Cart) {
             orderPrice = <h4>{this.props.fullPrice} $</h4>
             form = (
                 <form onSubmit={this.orderHandler}>

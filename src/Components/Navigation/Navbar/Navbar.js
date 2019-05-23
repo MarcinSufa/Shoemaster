@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import  './Navbar.modules.css';
 import { NavLink } from 'react-router-dom';
 import CartCount from '../../Cart/CartCount/CartCount';
@@ -32,7 +32,6 @@ class  Navbar extends Component {
         let linkStyling = 'NavLink';
         let rightLinkWrapper = 'RightNavLink';
         let cartCountNum = '';
-        let accountLink = '';
         let menuIsOpen = '';
 
         if (this.state.menuIsClicked) {
@@ -43,20 +42,19 @@ class  Navbar extends Component {
         if (this.props.cartCounter) {
             cartCountNum = <CartCount count = {this.props.cartCounter} />
         } 
-        if ( this.props.isAuthenticated) {
-            accountLink = <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Account" className={linkStyling}>Account</NavLink>
-        }
 
         return (
             <nav className='NavBarDiv'>
                 <ul className='LeftNavLink'>
-                <NavLink onClick={this.closeMenuHandler} to="/" activeClassName="rootActive" exact className="Logo">Shoemaster.com</NavLink>
+                <NavLink onClick={this.closeMenuHandler} to="/" activeClassName="rootActive" exact className="Logo">Shoemaster</NavLink>
                 </ul>
                 <ul className={rightLinkWrapper}>
                 <div className='HamMenu'><HamburgerMenu className={menuIsOpen} clicked={this.menuClickedHandler}/></div>
-                {accountLink}
                 {this.props.isAuthenticated? 
-                <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Logout" className={linkStyling}>Logout</NavLink>
+                <Fragment>
+                    <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Account" className={linkStyling}>Account</NavLink>
+                    <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Logout" className={linkStyling}>Logout</NavLink>
+                </Fragment>
                 :<NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Login" className={linkStyling}>Login</NavLink>
                 }
                 <NavLink onClick={this.closeMenuHandler} activeClassName='activeLink' to="/Cart" className={linkStyling}>

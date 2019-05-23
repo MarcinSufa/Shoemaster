@@ -14,8 +14,6 @@
     font-size: 15px;
 }
 
-
-
 @media (min-width:600px) {
     .Auth {
         width: 500px;

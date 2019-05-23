@@ -23,7 +23,6 @@ class Account extends Component {
         axios.get( '/orders.json' + queryParams )
         .then( response => {
             this.setState( { accountData: response.data, loading: false });
-            console.log(this.state.accountData);
         })
         .catch( error => {
             this.setState({ error: error, loading: false } );
@@ -51,7 +50,6 @@ render () {
     }
 
     if (this.state.accountData) {
-        console.log(Object.entries(this.state.accountData));
         showOrders = (Object.entries(this.state.accountData).map((order) => {
             return (
             <div className='Account' key={order[0]}>

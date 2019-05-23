@@ -57,7 +57,6 @@ class FullProductInfo extends Component {
 
     selectSizeHandler = (sizKey) => {
         this.setState({size: sizKey[0]});
-        console.log(this.state.size);
     }
 
     continueHandler = (event) => {
@@ -74,7 +73,7 @@ class FullProductInfo extends Component {
         this.setState((prevState) => {
             return {madeOfClicked: !prevState.madeOfClicked} 
         })
-        console.log(this.state.madeOfClicked);
+        window.scrollTo(0, 0);
     }
 
     render () {
@@ -121,15 +120,15 @@ class FullProductInfo extends Component {
         <div  className='close' onClick={this.props.exit}/>
         <div className='FullProductCard' >
             <div className='FullProductLeft'>
-            <h3 className='FullPriceTag'>{this.props.price} $</h3>
-            <img className='FullProductImage' src={this.props.image} alt={this.props.model + ' shoe image'}></img>
-            {this.state.madeOfClicked?
-                    <ProductMadeOf
-                    class={'ShoeMaterials'}
-                    upper={this.props.madeOf.upper}
-                    lining={this.props.madeOf.lining}
-                    outerSole={this.props.madeOf.outerSole}
-                    />  : null}
+                <h3 className='FullPriceTag'>{this.props.price} $</h3>
+                <img className='FullProductImage' src={this.props.image} alt={this.props.model + ' shoe image'}></img>
+                {this.state.madeOfClicked?
+                        <ProductMadeOf
+                        class={'ShoeMaterials'}
+                        upper={this.props.madeOf.upper}
+                        lining={this.props.madeOf.lining}
+                        outerSole={this.props.madeOf.outerSole}
+                        />  : null}
             </div>
             <div className="FullProductRigth">
             {alertSizeSelect}
@@ -137,12 +136,7 @@ class FullProductInfo extends Component {
                 <span><h2>{this.props.model}</h2></span>   
                 <h4>Product id: {this.props.id} </h4>
                 <p>{this.props.description}</p>
-                <br />
-                
-                <br />
-                <div>
-                </div>
-                <Button clicked={this.showMadeOf}>Made off:</Button>
+                <Button btnType='madeOf' clicked={this.showMadeOf}>Made off:</Button>
                 <h3>Chose your size</h3>
                 <div className='ProductSize'>{productSize }</div>
                 {addToCartBtn}

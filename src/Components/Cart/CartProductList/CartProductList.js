@@ -3,8 +3,6 @@ import  './CartProductList.modules.css';
 import Button from '../../UI/Button/Button';
 
 
-
-
 const CartProductList = (props) => {
     
     return (

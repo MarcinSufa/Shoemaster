@@ -7,7 +7,6 @@ import Spinner from '../UI/Spinner/Spinner';
 import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as productListActions from '../../store/actions/index';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 
 class ProductList extends Component {
