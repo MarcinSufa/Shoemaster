@@ -1,5 +1,6 @@
 export {
     initProducts,
+    fetchProductsStart,
     fetchProductsFail
 } from './productList';
 export {

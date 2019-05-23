@@ -36,14 +36,6 @@
     position: relative;
   }
 
-  .ShoeAvailableSize {
-    display: inline-flex;
-    border: 1px solid #6a1b9a;
-    padding: 5px 10px;
-    margin: 5px;
-    border-radius: 25px;
-    color: #6a1b9a;
-  }
     
   .btnShoeMadeOf {
     border: 1px solid #4a148c;
@@ -62,14 +54,6 @@
 
   .btnShoeMadeOf:hover +.ShoeMaterials {
       display:inline-block;  
-  }
-
-  .ShoeMaterials {
-    display: none;
-    background-color: white;
-    z-index: 1;
-    position: relative;
-    top:-10px;
   }
 
   @media (max-width: 657px) {

@@ -7,6 +7,7 @@ import Spinner from '../UI/Spinner/Spinner';
 import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as productListActions from '../../store/actions/index';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 
 class ProductList extends Component {
@@ -40,20 +41,26 @@ class ProductList extends Component {
     render () {
         let loadMoreBtn = null;
         let fullProductInf = null;
-        let productList = this.props.error? <p>Unfortunately, we can't load shoes from the database!</p> : <Spinner/>;
+        let productList = null;
+        let loadingSpinner = this.props.loading? <Spinner/> : null ; 
+
+        productList = this.props.error && this.props.prod? <p>Unfortunately, we can't load shoes from the database!</p> : null;
         if (this.props.prod) {
             productList = (this.props.prod.slice(0, this.state.visible).map((shoes, index) => {
-                return <Product 
-                key={shoes.id}
-                brand={shoes.brand}
-                model={shoes.model} 
-                price={shoes.price}
-                image={shoes.image}
-                size={shoes.size}
-                type={shoes.type}
-                madeOf={shoes.madeOf}
-                clicked={() => this.productSelectedHandler(shoes.id, shoes)}
-                />
+                return  (
+                        <Product 
+                        key={shoes.id}
+                        brand={shoes.brand}
+                        model={shoes.model} 
+                        price={shoes.price}
+                        image={shoes.image}
+                        size={shoes.size}
+                        type={shoes.type}
+                        madeOf={shoes.madeOf}
+                        class={'HideMaterials'}
+                        clicked={() => this.productSelectedHandler(shoes.id, shoes)}
+                        />
+                    );
             })); 
             loadMoreBtn = <Button clicked={this.loadMore} >Load more</Button>
         } 
@@ -78,13 +85,14 @@ class ProductList extends Component {
         }
         
         return (
-            <React.Fragment>
+            <div>
+                {loadingSpinner}
                 {fullProductInf} 
-                <div className='ShoeDisplayer'> 
-                {productList}
-                </div> 
+                    <div className='ShoeDisplayer'>
+                    {productList}
+                    </div>   
                 {loadMoreBtn}
-            </React.Fragment>
+            </div>
         )
     }
 }
@@ -92,7 +100,8 @@ class ProductList extends Component {
 const mapStateToProps = state => {
     return {
         prod: state.productList.Products,
-        error: state.productList.error
+        error: state.productList.error,
+        loading: state.productList.loading
     };
 }
 

@@ -47,7 +47,7 @@ componentDidMount () {
 
         if(this.props.loading) {
             return <Spinner/>
-        }  else if (this.props.fullPrice !== 0 && this.props.Cart ) {
+        }   if (this.props.fullPrice !== 0 && this.props.Cart ) {
             fullCartPrice = <h3>Total Price: {this.props.fullPrice} $</h3>
             printCartProducts = (Object.entries(this.props.Cart).map((shoes) => {
                 return (
@@ -62,7 +62,7 @@ componentDidMount () {
                         size={shoes[1].size}
                         price={shoes[1].price}
                         onClick={this.handleDelete}
-                    />             
+                    />          
                 );
             }));
             checkoutBtn = <Button clicked={ this.goToCheckout}>{this.props.isAuthenticated? 'Checkout' : 'Signup to Order'} </Button>

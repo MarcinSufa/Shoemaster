@@ -12,9 +12,12 @@
 .FullPriceTag {
     padding: 10px;
     margin: 0;
+    left: 0;
     background-color:#6a1b9a;
     color: white;
     font-weight: 400;
+    position: absolute;
+    border-radius: 0% 100% 30% 70% / 44% 61% 39% 56%  ;
   }
 
   .FullProductImage {
@@ -31,6 +34,7 @@
     padding: 0 10px;
     text-align: center;
     background-color: #F6F6F6;
+    position: relative;
   }
 
   .FullProductRigth {
@@ -44,7 +48,9 @@
     display: flex;
   } 
 
-
+.ProductSize{
+    padding: 20px;
+}
 
   label {
       font-size: 1.25rem;
@@ -102,6 +108,7 @@
   width: 32px;
   height: 32px;
   opacity: 0.3;
+  z-index: 1;
 }
 .close:hover {
   opacity: 1;
@@ -126,7 +133,7 @@
     display: block;
     margin: 0 auto;
   }
-  .FullPriceTag, .FullProductImage , .FullProductLeft, .FullProductRigth {
+  .FullProductImage , .FullProductLeft, .FullProductRigth {
     padding: 0;
     margin: 0 auto;
     max-width: 100%;

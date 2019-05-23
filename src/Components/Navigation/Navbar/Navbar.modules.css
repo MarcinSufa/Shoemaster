@@ -96,7 +96,7 @@ a  {
     padding-left: 0;
 }
 
-@media(max-width: 620px) {
+@media(max-width: 624px) {
     .NavLink {
         display: none;
     }
@@ -115,7 +115,7 @@ a  {
 
 }
 
-@media(min-width: 621px) {
+@media(min-width: 625px) {
     .HamMenu{
         display: none;
     }

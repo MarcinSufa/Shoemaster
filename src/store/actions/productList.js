@@ -2,6 +2,12 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-products';
 
 
+export const fetchProductsStart = () => {
+    return {
+        type: actionTypes.FETCH_START
+    };
+};
+
 export const setProducts = (products) => {
     return {
         type: actionTypes.FETCH_PRODUCTS,
@@ -18,6 +24,7 @@ export const fetchProductsFail = () => {
 
 export const initProducts = () => {
     return dispatch => {
+        dispatch(fetchProductsStart());
         axios.get( '/Products.json' )
         .then( response => {
             dispatch( setProducts (response.data));

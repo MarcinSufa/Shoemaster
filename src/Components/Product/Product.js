@@ -1,5 +1,6 @@
 import React from 'react';
 import  './Product.css';
+import ProductMadeOf from './ProductMadeOf/ProductMadeOf';
 
 
 
@@ -26,11 +27,12 @@ const Product = (props) => {
             {productSize}
         </div>
         <button className='btnShoeMadeOf'>Made off</button>
-        <div className='ShoeMaterials' >
-            <span>upper: <div className="ShoeAvailableSize" >{props.madeOf.upper}</div></span>
-            <span>lining:<div className="ShoeAvailableSize" >{props.madeOf.lining}</div> </span>
-            <span>outerSole:<div className="ShoeAvailableSize" >{props.madeOf.outerSole}</div> </span>
-        </div>
+        <ProductMadeOf
+            class={props.class}
+            upper={props.madeOf.upper}
+            lining={props.madeOf.lining}
+            outerSole={props.madeOf.outerSole}
+        />
     </div>
     );
     

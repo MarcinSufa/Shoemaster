@@ -1,5 +1,7 @@
+export const FETCH_START = 'FETCH_START';
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const FETCH_PRODUCTS_FAIL = 'FETCH_PRODUCTS_FAIL';
+
 
 export const DELETE_FROM_CART = 'DELETE_FROM_CART';
 

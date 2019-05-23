@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import productAddedImg from '../../assets/images/done.png';
 import warningImg from '../../assets/images/warning.png';
+import ProductMadeOf from '../Product/ProductMadeOf/ProductMadeOf';
 
 class FullProductInfo extends Component {
 
@@ -18,7 +19,8 @@ class FullProductInfo extends Component {
         image: null,
         addedToCart: false,
         sizeNotSelected: false,
-        continueToCart: false
+        continueToCart: false,
+        madeOfClicked: false
     }
 
 
@@ -30,7 +32,6 @@ class FullProductInfo extends Component {
             newState.price = selectedShoePrice;
             newState.image = selectedShoeImg;
             this.setState({quantity: newState.quantity, id: newState.id, price: newState.price, addedToCart: true, image: newState.image}, () => {
-                // console.log('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price)
                 const cartProduct = {
                     id: this.state.id, 
                     size: this.state.size,
@@ -43,18 +44,11 @@ class FullProductInfo extends Component {
                     madeOf: this.props.madeOf
                 }
                 this.props.onAddToCart(cartProduct);
-                console.log(localStorage);   
                 this.setState({continueToCart: true})
-                // axios.post( '/Cart.json', cartProduct )
-                // .then( response => this.props.history.replace('/Cart')) 
-                // .catch( error => console.log(error));
             });
         } else {
             this.setState({sizeNotSelected: true})
         }
-        console.log(this.state.id);
-        // alert('your order is' + this.state.id + " and " + this.state.size + " the price is " + this.state.price);
-        console.log(selectedShoeId);
     }
 
     alertHandler = () => {
@@ -76,6 +70,13 @@ class FullProductInfo extends Component {
         this.setState({continueToCart: false});
     }
     
+    showMadeOf = () => {
+        this.setState((prevState) => {
+            return {madeOfClicked: !prevState.madeOfClicked} 
+        })
+        console.log(this.state.madeOfClicked);
+    }
+
     render () {
         let alertSizeSelect = null;
         let askIfContinue = null;
@@ -112,17 +113,23 @@ class FullProductInfo extends Component {
         let selectedShoeId = this.props.id;
         let selectedShoePrice = this.props.price;
         let selectedShoeImg = this.props.image;
-
         let addToCartBtn = (
             <Button  clicked={() => this.addToCartHandler(selectedShoeId, selectedShoePrice, selectedShoeImg)}>Add to Cart</Button>
         )
-
     return (
         <React.Fragment> 
         <div  className='close' onClick={this.props.exit}/>
         <div className='FullProductCard' >
             <div className='FullProductLeft'>
+            <h3 className='FullPriceTag'>{this.props.price} $</h3>
             <img className='FullProductImage' src={this.props.image} alt={this.props.model + ' shoe image'}></img>
+            {this.state.madeOfClicked?
+                    <ProductMadeOf
+                    class={'ShoeMaterials'}
+                    upper={this.props.madeOf.upper}
+                    lining={this.props.madeOf.lining}
+                    outerSole={this.props.madeOf.outerSole}
+                    />  : null}
             </div>
             <div className="FullProductRigth">
             {alertSizeSelect}
@@ -131,14 +138,13 @@ class FullProductInfo extends Component {
                 <h4>Product id: {this.props.id} </h4>
                 <p>{this.props.description}</p>
                 <br />
-                <div ><h3 className='FullPriceTag'>{this.props.price} $</h3></div>
+                
                 <br />
                 <div>
                 </div>
-                <button >Made off:</button>
+                <Button clicked={this.showMadeOf}>Made off:</Button>
                 <h3>Chose your size</h3>
-                <div>{productSize }</div>
-                <hr/>
+                <div className='ProductSize'>{productSize }</div>
                 {addToCartBtn}
                 {askIfContinue}
             </div>

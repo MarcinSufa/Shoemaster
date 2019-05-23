@@ -1,0 +1,29 @@
+.HideMaterials {
+    display: none;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    top:-10px;
+    }
+
+.ShoeMaterials {
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    position: absolute;
+    bottom:0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    background-color: transparent;
+
+}
+
+.ShoeAvailableSize {
+    display: inline-flex;
+    border: 1px solid #6a1b9a;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 25px;
+    color: #6a1b9a;
+    }    
