@@ -1,5 +1,9 @@
 E-commerce build in React / Redux with Firebase on backend.
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
+[Link to demo](https://marcinsufa.github.io/Shoemaster/)
+
+Test account: test@test.pl <br>
+Password: 123456
 
 ## Available Scripts
 
