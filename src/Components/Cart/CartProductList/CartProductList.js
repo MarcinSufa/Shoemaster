@@ -38,7 +38,7 @@ const CartProductDelete = styled.div`
     align-items: center;
     vertical-align: bottom;
     display: flex;
-    display: ${props => (props.noBtn ? 'none' : 'block')};
+    display: ${props => (props.noBtn ? 'none' : 'inherit')};
     @media (max-width: 450px) {
         margin: auto;
     }

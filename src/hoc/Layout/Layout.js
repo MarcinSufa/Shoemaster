@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../../Components/Navigation/Navbar/Navbar';
-import styled, { ThemeProvider } from 'styled-components';
-import { theme } from '../../utils/theme';
+import styled from 'styled-components';
 
 const LayoutStyled = styled.div`
     width: auto;
@@ -17,12 +16,10 @@ const LayoutStyled = styled.div`
 
 const Layout = props => {
     return (
-        <ThemeProvider theme={theme}>
-            <React.Fragment>
-                <Navbar />
-                <LayoutStyled>{props.children}</LayoutStyled>
-            </React.Fragment>
-        </ThemeProvider>
+        <React.Fragment>
+            <Navbar />
+            <LayoutStyled>{props.children}</LayoutStyled>
+        </React.Fragment>
     );
 };
 
