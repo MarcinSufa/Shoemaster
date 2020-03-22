@@ -1,11 +1,27 @@
 import React from 'react';
-import '../CartCount/CartCount.css'
+import styled from 'styled-components';
 
-const CartCount = (props) => {
+const CartCount = props => {
+    const StyledButton = styled.button`
+        border: 1px solid ${theme => theme.colors.violet};
+        padding: 0px;
+        margin: auto;
+        border-radius: 25px;
+        height: 20px;
+        width: 20px;
+        color: ${theme => theme.colors.violet};
+        color: white;
+        background-color: ${theme => theme.colors.violet};
+        z-index: 449;
+        text-align: center;
+        vertical-align: middle;
 
-    return (
-        <button className='CartCountNum'>{props.count}</button>
-    );
-}
+        @media (max-width: 620px) {
+            margin: 0;
+        }
+    `;
+
+    return <StyledButton className='CartCountNum'>{props.count}</StyledButton>;
+};
 
 export default CartCount;
