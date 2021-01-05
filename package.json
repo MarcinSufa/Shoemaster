@@ -4,7 +4,7 @@
     "private": true,
     "homepage": "https://marcinsufa.github.io/Shoemaster/",
     "dependencies": {
-        "axios": "^0.18.1",
+        "axios": "^0.21.1",
         "gh-pages": "^2.2.0",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
